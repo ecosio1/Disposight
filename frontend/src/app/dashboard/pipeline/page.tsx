@@ -8,7 +8,7 @@ import { UpgradePrompt } from "@/components/dashboard/upgrade-prompt";
 import { usePlan } from "@/contexts/plan-context";
 import { TeamLeaderboard } from "@/components/dashboard/team-leaderboard";
 import { FollowUpIndicator } from "@/components/dashboard/follow-up-indicator";
-import { DealScoreBadge } from "@/components/dashboard/deal-score-badge";
+
 
 const PIPELINE_STAGES = [
   { key: "identified", label: "Identified", color: "var(--text-muted)" },
@@ -24,6 +24,13 @@ const PRIORITY_COLORS: Record<string, string> = {
   high: "var(--high)",
   medium: "var(--medium)",
   low: "var(--text-muted)",
+};
+
+const PRIORITY_BADGES: Record<string, { label: string; bg: string; text: string }> = {
+  urgent: { label: "URGENT", bg: "rgba(239,68,68,0.12)", text: "var(--critical)" },
+  high: { label: "HIGH", bg: "rgba(249,115,22,0.12)", text: "var(--high)" },
+  medium: { label: "MED", bg: "rgba(234,179,8,0.12)", text: "var(--medium)" },
+  low: { label: "LOW", bg: "rgba(148,163,184,0.1)", text: "var(--text-muted)" },
 };
 
 const LOST_REASONS = [
@@ -167,17 +174,17 @@ export default function PipelinePage() {
         )}
 
         {loading ? (
-          <div className="flex gap-4 overflow-x-auto pb-4">
+          <div className="flex gap-5 overflow-x-auto pb-4">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="min-w-[240px] h-48 rounded-lg animate-pulse" style={{ backgroundColor: "var(--bg-surface)" }} />
+              <div key={i} className="min-w-[280px] h-48 rounded-xl animate-pulse" style={{ backgroundColor: "var(--bg-surface)" }} />
             ))}
           </div>
         ) : items.length === 0 ? (
-          <div className="p-8 rounded-lg text-center" style={{ backgroundColor: "var(--bg-surface)" }}>
-            <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+          <div className="p-10 rounded-xl text-center" style={{ backgroundColor: "var(--bg-surface)" }}>
+            <p className="text-sm font-medium" style={{ color: "var(--text-secondary)" }}>
               No leads in your pipeline yet
             </p>
-            <p className="text-xs mt-1" style={{ color: "var(--text-muted)" }}>
+            <p className="text-xs mt-2" style={{ color: "var(--text-muted)" }}>
               Claim leads from the{" "}
               <Link href="/dashboard" className="hover:underline" style={{ color: "var(--accent)" }}>
                 Deals
@@ -187,27 +194,27 @@ export default function PipelinePage() {
           </div>
         ) : (
           /* Kanban Board */
-          <div className="flex gap-4 overflow-x-auto pb-4">
+          <div className="flex gap-5 overflow-x-auto pb-4">
             {PIPELINE_STAGES.map((stage) => {
               const stageItems = grouped[stage.key] || [];
               return (
                 <div
                   key={stage.key}
-                  className="min-w-[240px] flex-shrink-0 rounded-lg flex flex-col"
-                  style={{ backgroundColor: "var(--bg-surface)", border: "1px solid var(--border-default)" }}
+                  className="min-w-[280px] flex-shrink-0 rounded-xl flex flex-col"
+                  style={{ backgroundColor: "var(--bg-surface)" }}
                 >
                   {/* Column header */}
                   <div
-                    className="px-3 py-2 rounded-t-lg"
-                    style={{ borderBottom: "1px solid var(--border-default)", borderTop: `3px solid ${stage.color}` }}
+                    className="px-4 py-3 rounded-t-xl"
+                    style={{ borderTop: `3px solid ${stage.color}` }}
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: stage.color }}>
                         {stage.label}
                       </span>
                       <span
-                        className="text-[10px] font-mono px-1.5 py-0.5 rounded"
-                        style={{ backgroundColor: "var(--bg-elevated)", color: "var(--text-muted)" }}
+                        className="text-[10px] font-semibold px-2 py-0.5 rounded-full"
+                        style={{ backgroundColor: `color-mix(in srgb, ${stage.color} 12%, transparent)`, color: stage.color }}
                       >
                         {stageItems.length}
                       </span>
@@ -215,10 +222,10 @@ export default function PipelinePage() {
                   </div>
 
                   {/* Cards */}
-                  <div className="flex-1 p-2 space-y-2 overflow-y-auto max-h-[calc(100vh-320px)]">
+                  <div className="flex-1 p-3 space-y-3 overflow-y-auto max-h-[calc(100vh-320px)]">
                     {stageItems.length === 0 ? (
-                      <div className="p-3 text-center">
-                        <p className="text-[10px]" style={{ color: "var(--text-muted)" }}>No items</p>
+                      <div className="py-6 text-center">
+                        <p className="text-xs" style={{ color: "var(--text-muted)" }}>No items</p>
                       </div>
                     ) : (
                       stageItems.map((item) => (
@@ -290,33 +297,56 @@ function PipelineCard({
       })()
     : null;
 
+  const priorityBadge = PRIORITY_BADGES[item.priority] || PRIORITY_BADGES.low;
+
   return (
     <div
-      className="p-3 rounded-md space-y-2"
-      style={{ backgroundColor: "var(--bg-elevated)", border: "1px solid var(--border-default)" }}
+      className="p-3.5 rounded-lg space-y-2.5 transition-colors"
+      style={{
+        backgroundColor: "var(--bg-elevated)",
+        border: "1px solid var(--border-default)",
+        ["--hover-border" as string]: "var(--accent)",
+      }}
+      onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
+      onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border-default)")}
     >
-      {/* Company name + score */}
+      {/* Header: Company name + deal score circle */}
       <div className="flex items-start justify-between gap-2">
         <Link
           href={`/dashboard/opportunities/${item.company_id}`}
-          className="text-xs font-medium hover:underline leading-tight"
+          className="text-sm font-semibold hover:underline leading-tight"
           style={{ color: "var(--text-primary)" }}
         >
           {item.company_name || "Unknown"}
         </Link>
         {item.deal_score != null && (
-          <DealScoreBadge score={item.deal_score} size="sm" />
+          <div
+            className="w-8 h-8 rounded-full flex items-center justify-center shrink-0"
+            style={{
+              border: `2px solid ${item.deal_score >= 85 ? "var(--critical)" : item.deal_score >= 70 ? "var(--high)" : item.deal_score >= 55 ? "var(--medium)" : "var(--low)"}`,
+            }}
+            title={`Deal Score: ${item.deal_score}`}
+          >
+            <span
+              className="text-[11px] font-mono font-bold"
+              style={{
+                color: item.deal_score >= 85 ? "var(--critical)" : item.deal_score >= 70 ? "var(--high)" : item.deal_score >= 55 ? "var(--medium)" : "var(--low)",
+              }}
+            >
+              {item.deal_score}
+            </span>
+          </div>
         )}
       </div>
 
-      {/* Priority dot + follow-up indicator */}
-      <div className="flex items-center gap-2 flex-wrap">
+      {/* Priority badge + activity age */}
+      <div className="flex items-center gap-2">
         <span
-          className="w-2 h-2 rounded-full shrink-0"
-          style={{ backgroundColor: PRIORITY_COLORS[item.priority] || "var(--text-muted)" }}
-          title={`Priority: ${item.priority}`}
-        />
-        <FollowUpIndicator followUpAt={item.follow_up_at} compact />
+          className="px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase"
+          style={{ backgroundColor: priorityBadge.bg, color: priorityBadge.text }}
+        >
+          {priorityBadge.label}
+        </span>
         {lastActivityAge && (
           <span className="text-[10px]" style={{ color: "var(--text-muted)" }}>
             {lastActivityAge}
@@ -329,21 +359,58 @@ function PipelineCard({
         )}
       </div>
 
-      {/* Claimed by */}
-      {item.claimed_by_name && (
-        <p className="text-[10px]" style={{ color: "var(--text-muted)" }}>
-          {item.claimed_by_name}
-        </p>
+      {/* Stats row: Risk Score + Deal Score number */}
+      {(item.composite_risk_score != null || item.deal_score != null) && (
+        <div className="flex gap-3">
+          {item.composite_risk_score != null && (
+            <div>
+              <p className="text-[9px] uppercase tracking-wide" style={{ color: "var(--text-muted)" }}>Risk</p>
+              <p className="text-xs font-semibold" style={{ color: "var(--text-primary)" }}>
+                {Math.round(item.composite_risk_score)}
+              </p>
+            </div>
+          )}
+          {item.deal_score != null && (
+            <div>
+              <p className="text-[9px] uppercase tracking-wide" style={{ color: "var(--text-muted)" }}>Deal</p>
+              <p className="text-xs font-semibold" style={{ color: "var(--text-primary)" }}>
+                {item.deal_score}
+              </p>
+            </div>
+          )}
+        </div>
       )}
 
-      {/* Status selector */}
+      {/* Follow-up indicator (own row when present) */}
+      {item.follow_up_at && (
+        <div>
+          <FollowUpIndicator followUpAt={item.follow_up_at} compact />
+        </div>
+      )}
+
+      {/* Claimed by */}
+      {item.claimed_by_name && (
+        <div className="flex items-center gap-1.5">
+          <div
+            className="w-4 h-4 rounded-full flex items-center justify-center text-[8px] font-bold shrink-0"
+            style={{ backgroundColor: "var(--accent-muted)", color: "var(--accent-text)" }}
+          >
+            {item.claimed_by_name.charAt(0).toUpperCase()}
+          </div>
+          <span className="text-[10px]" style={{ color: "var(--text-muted)" }}>
+            {item.claimed_by_name}
+          </span>
+        </div>
+      )}
+
+      {/* Status selector — pill style */}
       <select
         value={item.status || "identified"}
         onChange={(e) => onStatusChange(item.id, e.target.value)}
-        className="w-full px-2 py-1 rounded text-[11px] outline-none"
+        className="w-full px-2.5 py-1 rounded-full text-[11px] font-medium outline-none cursor-pointer"
         style={{
-          backgroundColor: "var(--bg-surface)",
-          border: "1px solid var(--border-default)",
+          backgroundColor: `color-mix(in srgb, ${stageColor} 8%, transparent)`,
+          border: "none",
           color: stageColor,
         }}
       >
