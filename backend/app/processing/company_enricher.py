@@ -16,6 +16,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config import settings
 from app.models import Company, Signal
+from app.processing.domain_resolver import resolve_domain
 from app.processing.llm_client import llm_client
 
 logger = structlog.get_logger()
@@ -270,18 +271,40 @@ class CompanyEnricher:
             logger.warning("enricher.llm_failed", company=company.name, error=str(e))
             return False
 
+    async def _resolve_domain(self, company: Company) -> bool:
+        """Resolve and set the company's website domain. Returns True if found."""
+        if company.domain:
+            return True
+
+        domain = await resolve_domain(company.name, company.headquarters_state)
+        if domain:
+            company.domain = domain
+            logger.info(
+                "enricher.domain_resolved",
+                company=company.name,
+                domain=domain,
+            )
+            return True
+
+        return False
+
     async def enrich_company(self, company: Company) -> str:
-        """Run both enrichment stages. Returns status: enriched/partial/not_found."""
+        """Run all enrichment stages. Returns status: enriched/partial/not_found."""
         sec_ok = await self._enrich_from_sec(company)
 
         # If SEC gave us industry + ticker, that's full enrichment
         if sec_ok and company.ticker and company.industry:
             company.enrichment_status = "enriched"
             company.enriched_at = datetime.now(timezone.utc)
+            # Resolve domain (non-blocking for status)
+            await self._resolve_domain(company)
             return "enriched"
 
         # Try LLM for missing fields (employee_count, industry)
         llm_ok = await self._enrich_from_llm(company)
+
+        # Always attempt domain resolution
+        await self._resolve_domain(company)
 
         if sec_ok or llm_ok:
             status = "enriched" if company.industry and (company.employee_count or company.ticker) else "partial"
@@ -342,3 +365,37 @@ async def backfill_all_companies(db: AsyncSession, batch_size: int = 30) -> dict
 
     logger.info("enricher.backfill_complete", **totals)
     return totals
+
+
+async def backfill_domains(db: AsyncSession, batch_size: int = 20) -> dict:
+    """Resolve domains for companies that were already enriched but have no domain."""
+    result = await db.execute(
+        select(Company)
+        .where(Company.domain.is_(None))
+        .where(Company.enrichment_status != "pending")
+        .order_by(Company.signal_count.desc())
+        .limit(batch_size)
+    )
+    companies = result.scalars().all()
+
+    if not companies:
+        return {"resolved": 0, "not_found": 0, "errors": 0, "total": 0}
+
+    stats = {"resolved": 0, "not_found": 0, "errors": 0, "total": len(companies)}
+
+    for company in companies:
+        try:
+            domain = await resolve_domain(company.name, company.headquarters_state)
+            if domain:
+                company.domain = domain
+                stats["resolved"] += 1
+                logger.info("domain_backfill.resolved", company=company.name, domain=domain)
+            else:
+                stats["not_found"] += 1
+        except Exception as e:
+            stats["errors"] += 1
+            logger.warning("domain_backfill.error", company=company.name, error=str(e))
+
+    await db.flush()
+    logger.info("domain_backfill.batch_complete", **stats)
+    return stats

@@ -6,7 +6,7 @@ import { ContactCard } from "./contact-card";
 import { UpgradePrompt } from "./upgrade-prompt";
 import KineticDotsLoader from "@/components/ui/kinetic-dots-loader";
 
-type ContactsState = "idle" | "loading" | "found" | "none_found" | "no_domain" | "error" | "gated";
+type ContactsState = "idle" | "loading" | "found" | "none_found" | "no_domain" | "resolving" | "error" | "gated";
 
 interface ContactsSectionProps {
   companyId: string;
@@ -33,10 +33,9 @@ export function ContactsSection({ companyId, companyName, domain, isPaid }: Cont
         if (res.contacts.length > 0) {
           setContacts(res.contacts);
           setState("found");
-        } else if (res.status === "no_domain") {
-          setState("no_domain");
         }
-        // Otherwise stay idle — user can click "Find Contacts"
+        // Stay idle for no_domain or none_found — user can click "Find Contacts"
+        // which will attempt domain resolution on the backend
       })
       .catch((err) => {
         if (err instanceof PlanLimitError) {
@@ -47,7 +46,8 @@ export function ContactsSection({ companyId, companyName, domain, isPaid }: Cont
   }, [companyId, isPaid]);
 
   const handleFindContacts = async () => {
-    setState("loading");
+    // If no domain, show "resolving" state since backend will try to find the domain first
+    setState(domain ? "loading" : "resolving");
     setError("");
 
     try {
@@ -107,24 +107,22 @@ export function ContactsSection({ companyId, companyName, domain, isPaid }: Cont
 
       {state === "idle" && (
         <div className="text-center py-4">
-          {!domain ? (
-            <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-              No website domain on file. Contact discovery requires a company website.
-            </p>
-          ) : (
-            <>
-              <p className="text-sm mb-3" style={{ color: "var(--text-secondary)" }}>
-                Discover leadership contacts with validated emails and phone numbers.
-              </p>
-              <button
-                onClick={handleFindContacts}
-                className="px-5 py-2.5 rounded-md text-sm font-medium transition-colors"
-                style={{ backgroundColor: "var(--accent)", color: "#fff" }}
-              >
-                Find Contacts
-              </button>
-            </>
-          )}
+          <p className="text-sm mb-3" style={{ color: "var(--text-secondary)" }}>
+            Discover leadership contacts with validated emails and phone numbers.
+          </p>
+          <button
+            onClick={handleFindContacts}
+            className="px-5 py-2.5 rounded-md text-sm font-medium transition-colors"
+            style={{ backgroundColor: "var(--accent)", color: "#fff" }}
+          >
+            Find Contacts
+          </button>
+        </div>
+      )}
+
+      {state === "resolving" && (
+        <div className="py-4">
+          <KineticDotsLoader label={`Locating website for ${companyName}`} />
         </div>
       )}
 
@@ -149,9 +147,22 @@ export function ContactsSection({ companyId, companyName, domain, isPaid }: Cont
       )}
 
       {state === "no_domain" && (
-        <p className="text-sm text-center py-4" style={{ color: "var(--text-muted)" }}>
-          No website domain on file. Contact discovery requires a company website.
-        </p>
+        <div className="text-center py-4 space-y-3">
+          <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+            Could not determine a website for this company. Contact discovery requires a verified domain.
+          </p>
+          <button
+            onClick={handleFindContacts}
+            className="px-4 py-2 rounded-md text-sm font-medium transition-colors"
+            style={{
+              backgroundColor: "var(--bg-elevated)",
+              color: "var(--text-secondary)",
+              border: "1px solid var(--border-default)",
+            }}
+          >
+            Try Again
+          </button>
+        </div>
       )}
 
       {state === "error" && (

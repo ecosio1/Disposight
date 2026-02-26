@@ -12,6 +12,20 @@ from app.schemas.signal import SignalOut
 router = APIRouter(prefix="/companies", tags=["companies"])
 
 
+@router.get("/industries", response_model=list[str])
+@limiter.limit("60/minute")
+async def list_industries(request: Request, db: DbSession):
+    """Return distinct non-null industry values, sorted alphabetically."""
+    result = await db.execute(
+        select(Company.industry)
+        .where(Company.industry.isnot(None))
+        .where(Company.industry != "")
+        .distinct()
+        .order_by(Company.industry)
+    )
+    return [row[0] for row in result.all()]
+
+
 @router.get("", response_model=CompanyListResponse)
 @limiter.limit("60/minute")
 async def list_companies(

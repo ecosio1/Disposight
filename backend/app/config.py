@@ -2,7 +2,7 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}
+    model_config = {"env_file": ".env", "env_file_encoding": "utf-8", "extra": "ignore"}
 
     # App
     app_name: str = "DispoSight"
@@ -55,6 +55,20 @@ class Settings(BaseSettings):
 
     # Firecrawl
     firecrawl_api_key: str = ""
+
+    # GitHub (blog auto-publishing)
+    github_token: str = ""
+    github_repo: str = "ecosio1/Disposight"
+    github_branch: str = "main"
+
+    # Unsplash (blog hero images)
+    unsplash_access_key: str = ""
+
+    # IndexNow (search engine ping)
+    indexnow_key: str = ""
+
+    # Blog generation
+    blog_max_daily: int = 5
 
     # Admin
     admin_emails: str = ""  # Comma-separated list of admin email addresses

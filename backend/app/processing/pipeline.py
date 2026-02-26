@@ -176,6 +176,17 @@ async def process_pending_signals(db: AsyncSession) -> dict:
                     error=str(alert_err),
                 )
 
+            # Step 8b: Queue keyword blog post (first signal per company)
+            try:
+                from app.processing.blog_generator import queue_blog_post
+                await queue_blog_post(db, signal, company)
+            except Exception as blog_err:
+                logger.error(
+                    "pipeline.blog_queue_error",
+                    signal_id=str(signal.id),
+                    error=str(blog_err),
+                )
+
             # Mark raw signal as processed
             raw.processing_status = "processed"
             companies_to_update.add(company.id)

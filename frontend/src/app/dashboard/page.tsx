@@ -65,6 +65,8 @@ export default function TodayPage() {
   const [data, setData] = useState<OpportunityListResponse | null>(null);
   const [listLoading, setListLoading] = useState(false);
   const [filter, setFilter] = useState("All");
+  const [industryFilter, setIndustryFilter] = useState("All");
+  const [industries, setIndustries] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState("deal_score");
   const [page, setPage] = useState(1);
   const [exporting, setExporting] = useState(false);
@@ -79,6 +81,12 @@ export default function TodayPage() {
       .finally(() => setStatsLoading(false));
   }, []);
 
+  // Fetch distinct industries once when expanded view opens
+  useEffect(() => {
+    if (!showAll || industries.length > 0) return;
+    api.getIndustries().then(setIndustries).catch(() => {});
+  }, [showAll, industries.length]);
+
   // Fetch full list when expanded or filters change
   useEffect(() => {
     if (!showAll) return;
@@ -89,12 +97,13 @@ export default function TodayPage() {
       sort_by: sortBy,
     };
     if (filter !== "All") params.signal_type = filter;
+    if (industryFilter !== "All") params.industry = industryFilter;
 
     api.getOpportunities(params)
       .then(setData)
       .catch(() => setData({ opportunities: [], total: 0, page: 1, per_page: 20, total_pipeline_value: 0, total_devices: 0 }))
       .finally(() => setListLoading(false));
-  }, [showAll, filter, sortBy, page]);
+  }, [showAll, filter, industryFilter, sortBy, page]);
 
   const handleWatch = async (companyId: string) => {
     setWatchLimitMsg(null);
@@ -223,6 +232,21 @@ export default function TodayPage() {
               >
                 &larr; Back to Action View
               </button>
+              <select
+                value={industryFilter}
+                onChange={(e) => { setIndustryFilter(e.target.value); setPage(1); }}
+                className="px-3 py-1.5 rounded-md text-xs outline-none"
+                style={{
+                  backgroundColor: industryFilter !== "All" ? "var(--accent-muted)" : "var(--bg-surface)",
+                  border: `1px solid ${industryFilter !== "All" ? "var(--accent)" : "var(--border-default)"}`,
+                  color: industryFilter !== "All" ? "var(--accent-text)" : "var(--text-secondary)",
+                }}
+              >
+                <option value="All">All Industries</option>
+                {industries.map((ind) => (
+                  <option key={ind} value={ind}>{ind}</option>
+                ))}
+              </select>
               <select
                 value={sortBy}
                 onChange={(e) => { setSortBy(e.target.value); setPage(1); }}
@@ -374,7 +398,6 @@ export default function TodayPage() {
                   className="rounded-lg divide-y"
                   style={{
                     backgroundColor: "var(--bg-surface)",
-                    borderColor: "var(--border-default)",
                     border: "1px solid var(--border-default)",
                   }}
                 >

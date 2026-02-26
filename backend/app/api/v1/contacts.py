@@ -9,6 +9,7 @@ from app.api.v1.deps import DbSession, TenantPlan
 from app.contacts.pipeline import get_or_discover_contacts
 from app.models.company import Company
 from app.plan_limits import raise_plan_limit
+from app.processing.domain_resolver import resolve_domain
 from app.rate_limit import limiter
 from app.schemas.contact import ContactOut, ContactsResponse
 
@@ -37,14 +38,21 @@ async def find_contacts(
     if not company:
         raise HTTPException(status_code=404, detail="Company not found")
 
+    # Attempt on-demand domain resolution if missing
     if not company.domain:
-        return ContactsResponse(
-            contacts=[],
-            company_id=company.id,
-            company_name=company.name,
-            status="no_domain",
-            total=0,
-        )
+        domain = await resolve_domain(company.name, company.headquarters_state)
+        if domain:
+            company.domain = domain
+            await db.flush()
+            logger.info("contacts.domain_resolved_on_demand", company=company.name, domain=domain)
+        else:
+            return ContactsResponse(
+                contacts=[],
+                company_id=company.id,
+                company_name=company.name,
+                status="no_domain",
+                total=0,
+            )
 
     contacts = await get_or_discover_contacts(db, company)
     await db.commit()

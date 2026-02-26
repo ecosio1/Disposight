@@ -88,6 +88,16 @@ async def backfill_company_enrichment(ctx):
         return result
 
 
+async def backfill_company_domains(ctx):
+    from app.db.session import async_session_factory
+    from app.processing.company_enricher import backfill_domains
+
+    async with async_session_factory() as db:
+        result = await backfill_domains(db, batch_size=20)
+        await db.commit()
+        return result
+
+
 async def refresh_all_risk_scores(ctx):
     from sqlalchemy import select
 
@@ -128,6 +138,16 @@ async def send_weekly_digest(ctx):
         await db.commit()
 
 
+async def publish_keyword_blogs(ctx):
+    from app.db.session import async_session_factory
+    from app.processing.blog_generator import process_blog_queue
+
+    async with async_session_factory() as db:
+        result = await process_blog_queue(db)
+        await db.commit()
+        return result
+
+
 async def run_security_audit_job(ctx):
     from app.workers.security_worker import run_security_audit
     return await run_security_audit(ctx)
@@ -144,9 +164,11 @@ class WorkerSettings:
         process_raw_signals,
         enrich_companies,
         backfill_company_enrichment,
+        backfill_company_domains,
         refresh_all_risk_scores,
         send_daily_digest,
         send_weekly_digest,
+        publish_keyword_blogs,
         run_security_audit_job,
     ]
     cron_jobs = [
@@ -160,5 +182,7 @@ class WorkerSettings:
         cron(refresh_all_risk_scores, hour=5, minute=0),  # Daily 5am UTC
         cron(send_daily_digest, hour=13, minute=0),
         cron(send_weekly_digest, weekday=1, hour=13, minute=0),
+        cron(publish_keyword_blogs, hour={3, 9, 15, 21}, minute=45),  # Every 6 hours
         cron(run_security_audit_job, hour={0, 6, 12, 18}, minute=15),  # Every 6 hours
+        cron(backfill_company_domains, hour={3, 9, 15, 21}, minute=0),  # Every 6 hours
     ]

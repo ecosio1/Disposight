@@ -72,6 +72,7 @@ export const api = {
     const qs = params ? "?" + new URLSearchParams(params).toString() : "";
     return apiFetch<CompanyListResponse>(`/companies${qs}`);
   },
+  getIndustries: () => apiFetch<string[]>("/companies/industries"),
   getCompany: (id: string) => apiFetch<Company>(`/companies/${id}`),
   getCompanySignals: (id: string) => apiFetch<Signal[]>(`/companies/${id}/signals`),
 
