@@ -21,20 +21,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
-  const posts = getAllPostsIndex().map((post) => {
-    const imageUrl = post.heroImage?.url;
-    // Strip query strings from image URLs to avoid unescaped & in XML
-    const cleanImageUrl = imageUrl?.split("?")[0];
-    const fullImageUrl = cleanImageUrl?.startsWith("/")
-      ? `${base}${cleanImageUrl}`
-      : cleanImageUrl;
-
-    return {
-      url: `${base}/blog/${post.slug}`,
-      lastModified: new Date(post.publishedAt),
-      ...(fullImageUrl ? { images: [fullImageUrl] } : {}),
-    };
-  });
+  const posts = getAllPostsIndex().map((post) => ({
+    url: `${base}/blog/${post.slug}`,
+    lastModified: new Date(post.publishedAt),
+  }));
 
   return [...staticRoutes, ...categories, ...posts];
 }
