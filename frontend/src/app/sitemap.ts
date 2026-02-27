@@ -23,9 +23,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const posts = getAllPostsIndex().map((post) => {
     const imageUrl = post.heroImage?.url;
-    const fullImageUrl = imageUrl?.startsWith("/")
-      ? `${base}${imageUrl}`
-      : imageUrl;
+    // Strip query strings from image URLs to avoid unescaped & in XML
+    const cleanImageUrl = imageUrl?.split("?")[0];
+    const fullImageUrl = cleanImageUrl?.startsWith("/")
+      ? `${base}${cleanImageUrl}`
+      : cleanImageUrl;
 
     return {
       url: `${base}/blog/${post.slug}`,
