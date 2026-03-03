@@ -4,7 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
-const GA_ID = "G-H748VMHYE4";
+const GA_ID = "G-6RX0SBLEWC";
 
 const siteUrl = "https://disposight.com";
 
