@@ -148,6 +148,16 @@ async def publish_keyword_blogs(ctx):
         return result
 
 
+async def process_drip_emails_job(ctx):
+    from app.db.session import async_session_factory
+    from app.email.drip import process_drip_emails
+
+    async with async_session_factory() as db:
+        result = await process_drip_emails(db)
+        await db.commit()
+        return result
+
+
 async def run_security_audit_job(ctx):
     from app.workers.security_worker import run_security_audit
     return await run_security_audit(ctx)
@@ -169,6 +179,7 @@ class WorkerSettings:
         send_daily_digest,
         send_weekly_digest,
         publish_keyword_blogs,
+        process_drip_emails_job,
         run_security_audit_job,
     ]
     cron_jobs = [
@@ -183,6 +194,7 @@ class WorkerSettings:
         cron(send_daily_digest, hour=13, minute=0),
         cron(send_weekly_digest, weekday=1, hour=13, minute=0),
         cron(publish_keyword_blogs, hour={3, 9, 15, 21}, minute=45),  # Every 6 hours
+        cron(process_drip_emails_job, hour=None, minute={0, 30}),  # Every 30 min for timely drip emails
         cron(run_security_audit_job, hour={0, 6, 12, 18}, minute=15),  # Every 6 hours
         cron(backfill_company_domains, hour={3, 9, 15, 21}, minute=0),  # Every 6 hours
     ]

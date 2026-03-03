@@ -2,6 +2,7 @@ import re
 import uuid
 from datetime import datetime, timedelta, timezone
 
+import structlog
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field
 from sqlalchemy import select
@@ -11,6 +12,8 @@ from app.config import settings
 from app.models import Tenant, User
 from app.plan_limits import get_plan_limits
 from app.rate_limit import limiter
+
+logger = structlog.get_logger()
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -82,6 +85,13 @@ async def auth_callback(request: Request, body: AuthCallbackRequest, user_id: Cu
     )
     db.add(user)
     await db.flush()
+
+    # Send welcome email (non-blocking — don't fail signup if email fails)
+    try:
+        from app.email.drip import send_welcome_email
+        await send_welcome_email(user, tenant)
+    except Exception as e:
+        logger.warning("auth.welcome_email_failed", error=str(e))
 
     return AuthCallbackResponse(
         user_id=str(user.id),
