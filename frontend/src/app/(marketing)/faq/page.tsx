@@ -28,7 +28,7 @@ const faqs = [
   {
     question: "What plans and pricing are available?",
     answer:
-      "DispoSight offers two plans: Starter at $99/month (all 4 data pipelines, 50 watchlist companies, daily email digest, 1 team member) and Professional at $199/month (everything in Starter plus 200 watchlist companies, real-time alerts, 5 team members, signal correlation, and API access). Enterprise pricing is available for larger teams with custom requirements.",
+      "DispoSight Professional is $199/month and includes all 4 data pipelines (WARN Act, bankruptcy, SEC, news), 200 watchlist companies, real-time alerts, full 8-factor deal scoring, signal correlation, and CSV export. Enterprise pricing is available for larger teams with custom requirements. Every plan starts with a free 3-day trial — no credit card required.",
   },
   {
     question: "Is there a free trial?",

@@ -41,29 +41,16 @@ const scoreTooltip = "Deal score (0–100) — higher means greater likelihood o
 
 const plans = [
   {
-    name: "Starter",
-    price: "$99",
-    period: "/month",
-    features: [
-      "All 4 data pipelines",
-      "50 watchlist companies",
-      "Daily email digest",
-      "1 team member",
-    ],
-    cta: "Start Free Trial",
-    highlighted: false,
-  },
-  {
     name: "Professional",
     price: "$199",
     period: "/month",
     features: [
-      "Everything in Starter",
+      "All 4 data pipelines",
       "200 watchlist companies",
-      "Real-time alerts",
-      "5 team members",
-      "Signal correlation",
-      "API access",
+      "Real-time, daily & weekly alerts",
+      "Full 8-factor deal scoring",
+      "Signal correlation & risk trends",
+      "CSV export",
     ],
     cta: "Start Free Trial",
     highlighted: true,
@@ -736,7 +723,7 @@ export default function HomePage() {
             3-day free trial &middot; No credit card required &middot; Cancel anytime
           </p>
         </div>
-        <div className="grid sm:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {plans.map((plan) => (
             <div
               key={plan.name}

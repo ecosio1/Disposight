@@ -220,7 +220,7 @@ def _trial_expiring_html(user: User) -> str:
         </div>
 
         <p style="color: #A1A1AA; font-size: 13px; text-align: center;">
-            Plans start at $49/mo. Cancel anytime.<br>
+            Professional plan — $199/mo. Cancel anytime.<br>
             <a href="{settings.frontend_url}/pricing" style="color: #6EE7B7;">Compare plans →</a>
         </p>
 
