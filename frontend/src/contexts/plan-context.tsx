@@ -47,20 +47,25 @@ export function PlanProvider({ children }: { children: ReactNode }) {
       try {
         const profile = await api.getMe();
         setUser(profile);
-      } catch {
+      } catch (firstErr) {
         // First call may fail (session not hydrated, missing tenant, etc.)
         // Try to ensure tenant exists, then retry once.
+        console.warn("[PlanProvider] getMe failed, attempting tenant creation:", firstErr);
         try {
           const { data: { user: sbUser } } = await supabase.auth.getUser();
           if (sbUser?.email) {
+            console.info("[PlanProvider] Creating tenant for:", sbUser.email);
             await api.authCallback({
               email: sbUser.email,
-              full_name: sbUser.user_metadata?.full_name,
+              full_name: sbUser.user_metadata?.full_name ?? sbUser.user_metadata?.name,
             });
+            const profile = await api.getMe();
+            setUser(profile);
+          } else {
+            console.warn("[PlanProvider] No Supabase user found — user is unauthenticated");
           }
-          const profile = await api.getMe();
-          setUser(profile);
-        } catch {
+        } catch (retryErr) {
+          console.error("[PlanProvider] Tenant creation retry also failed:", retryErr);
           // Still failed — user will see free/unauthenticated state
         }
       } finally {

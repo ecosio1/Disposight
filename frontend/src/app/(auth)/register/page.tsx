@@ -60,7 +60,7 @@ function Chip({
 }
 
 export default function RegisterPage() {
-  const [step, setStep] = useState<1 | 2 | 3>(1);
+  const [step, setStep] = useState<1 | 2 | 3 | "confirm">(1);
 
   // Step 1
   const [fullName, setFullName] = useState("");
@@ -98,7 +98,14 @@ export default function RegisterPage() {
     setLoading(true);
 
     const supabase = createClient();
-    const { error: signUpError } = await supabase.auth.signUp({ email, password });
+    const { data, error: signUpError } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { full_name: fullName || undefined },
+        emailRedirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
 
     if (signUpError) {
       setError(signUpError.message);
@@ -107,6 +114,15 @@ export default function RegisterPage() {
     }
 
     setLoading(false);
+
+    // If email confirmation is required, Supabase returns no session.
+    // Show confirmation screen instead of proceeding to profile steps.
+    if (!data.session) {
+      setStep("confirm");
+      return;
+    }
+
+    // Session exists (email confirmation disabled) — proceed to profile steps
     setStep(2);
   };
 
@@ -156,18 +172,20 @@ export default function RegisterPage() {
         </div>
 
         {/* Step indicator */}
-        <div className="flex items-center justify-center gap-2 mb-6">
-          {[1, 2, 3].map((s) => (
-            <div
-              key={s}
-              className="h-2 rounded-full transition-all"
-              style={{
-                width: s === step ? "2rem" : "0.5rem",
-                backgroundColor: s <= step ? "var(--accent)" : "var(--border-default)",
-              }}
-            />
-          ))}
-        </div>
+        {step !== "confirm" && (
+          <div className="flex items-center justify-center gap-2 mb-6">
+            {[1, 2, 3].map((s) => (
+              <div
+                key={s}
+                className="h-2 rounded-full transition-all"
+                style={{
+                  width: s === step ? "2rem" : "0.5rem",
+                  backgroundColor: s <= step ? "var(--accent)" : "var(--border-default)",
+                }}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Step 1: Account Creation */}
         {step === 1 && (
@@ -257,6 +275,37 @@ export default function RegisterPage() {
                 Sign in
               </Link>
             </p>
+          </>
+        )}
+
+        {/* Email Confirmation */}
+        {step === "confirm" && (
+          <>
+            <div className="text-center space-y-4">
+              <div
+                className="w-16 h-16 mx-auto rounded-full flex items-center justify-center"
+                style={{ backgroundColor: "var(--accent-muted, rgba(16, 185, 129, 0.15))" }}
+              >
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+              </div>
+              <h2 className="text-lg font-semibold" style={{ color: "var(--text-primary)" }}>
+                Check your email
+              </h2>
+              <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+                We sent a confirmation link to <strong style={{ color: "var(--text-primary)" }}>{email}</strong>.
+                Click the link in the email to activate your account, then sign in.
+              </p>
+              <Link
+                href="/login"
+                className="inline-block mt-4 px-6 py-2 rounded-md text-sm font-medium transition-colors"
+                style={{ backgroundColor: "var(--accent)", color: "#fff" }}
+              >
+                Go to Sign In
+              </Link>
+            </div>
           </>
         )}
 
