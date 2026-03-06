@@ -1,12 +1,11 @@
 """Drip email sequence for new signups.
 
-Sequence (14-day trial):
+Sequence (7-day trial):
   Immediate — Welcome email
   +24 hours — Value email (top deals from platform)
   +3 days  — Tips email (features walkthrough)
-  +7 days  — Midpoint check-in (progress + social proof)
-  +11 days — Urgency email (3 days left)
-  +14 days — Trial expiring email (last day + upgrade CTA)
+  +5 days  — Urgency email (2 days left)
+  +7 days  — Trial expiring email (last day + upgrade CTA)
 
 Each email is tracked via User.metadata_ to avoid duplicates.
 """
@@ -66,7 +65,7 @@ def _welcome_html(user: User, trial_end: str) -> str:
         </div>
 
         <p style="font-size: 15px; line-height: 1.6;">
-            Hey {name}, thanks for signing up. You've got <strong style="color: {_ACCENT};">14 days of full access</strong>
+            Hey {name}, thanks for signing up. You've got <strong style="color: {_ACCENT};">7 days of full access</strong>
             to the platform — every signal, every deal score, every contact.
         </p>
 
@@ -226,7 +225,7 @@ def _midpoint_html(user: User) -> str:
         </div>
 
         <p style="color: #A1A1AA; font-size: 13px; text-align: center;">
-            You have 7 days left on your trial. No credit card required.
+            You have a few days left on your trial. No credit card required.
         </p>
 
         {_footer()}
@@ -235,14 +234,14 @@ def _midpoint_html(user: User) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Email 5: Urgency (sent ~11 days / 3 days before expiry)
+# Email 5: Urgency (sent ~5 days / 2 days before expiry)
 # ---------------------------------------------------------------------------
 def _urgency_html(user: User) -> str:
     name = (user.full_name or "").split()[0] or "there"
     return f"""
     <div {_WRAPPER}>
-        <h2 style="color: #F97316; margin: 0 0 8px 0;">3 Days Left on Your Trial</h2>
-        <p style="color: #A1A1AA; margin: 0 0 24px 0;">{name}, your full access to DispoSight expires in 3 days.</p>
+        <h2 style="color: #F97316; margin: 0 0 8px 0;">2 Days Left on Your Trial</h2>
+        <p style="color: #A1A1AA; margin: 0 0 24px 0;">{name}, your full access to DispoSight expires in 2 days.</p>
 
         <div style="background: {_SURFACE}; padding: 20px; border-radius: 8px; margin-bottom: 24px;">
             <p style="margin: 0 0 12px 0; font-weight: 600;">What you'll lose access to:</p>
@@ -358,7 +357,7 @@ async def send_welcome_email(user: User, tenant: Tenant):
         trial_end = tenant.trial_ends_at.strftime("%B %d, %Y")
 
     html = _welcome_html(user, trial_end)
-    if _send(user.email, "Welcome to DispoSight — Your 14-Day Trial Starts Now", html):
+    if _send(user.email, "Welcome to DispoSight — Your 7-Day Trial Starts Now", html):
         _set_drip_state(user, "welcome")
 
 
@@ -374,7 +373,7 @@ async def process_drip_emails(db: AsyncSession):
     )
     rows = result.all()
 
-    stats = {"value": 0, "tips": 0, "midpoint": 0, "urgency": 0, "expiring": 0, "skipped": 0}
+    stats = {"value": 0, "tips": 0, "urgency": 0, "expiring": 0, "skipped": 0}
 
     for user, tenant in rows:
         drip = _get_drip_state(user)
@@ -398,24 +397,16 @@ async def process_drip_emails(db: AsyncSession):
                 stats["tips"] += 1
             continue
 
-        # Email 4: Midpoint check-in (~7 days after signup)
-        if "midpoint" not in drip and "tips" in drip and hours_since_signup >= 166:
-            html = _midpoint_html(user)
-            if _send(user.email, "Halfway There — How's Your Trial Going?", html):
-                _set_drip_state(user, "midpoint")
-                stats["midpoint"] += 1
-            continue
-
-        # Email 5: Urgency (~11 days / 3 days before expiry)
-        if "urgency" not in drip and "midpoint" in drip and hours_since_signup >= 262:
+        # Email 4: Urgency (~5 days / 2 days before expiry)
+        if "urgency" not in drip and "tips" in drip and hours_since_signup >= 118:
             html = _urgency_html(user)
-            if _send(user.email, "3 Days Left on Your DispoSight Trial", html):
+            if _send(user.email, "2 Days Left on Your DispoSight Trial", html):
                 _set_drip_state(user, "urgency")
                 stats["urgency"] += 1
             continue
 
-        # Email 6: Trial expiring (~14 days / day of expiry)
-        if "expiring" not in drip and "urgency" in drip and hours_since_signup >= 334:
+        # Email 5: Trial expiring (~7 days / day of expiry)
+        if "expiring" not in drip and "urgency" in drip and hours_since_signup >= 166:
             html = _trial_expiring_html(user)
             if _send(user.email, "Your DispoSight Trial Ends Today", html):
                 _set_drip_state(user, "expiring")
@@ -426,7 +417,7 @@ async def process_drip_emails(db: AsyncSession):
 
     await db.flush()
 
-    total_sent = stats["value"] + stats["tips"] + stats["midpoint"] + stats["urgency"] + stats["expiring"]
+    total_sent = stats["value"] + stats["tips"] + stats["urgency"] + stats["expiring"]
     if total_sent > 0:
         logger.info("drip.batch_complete", **stats)
 
