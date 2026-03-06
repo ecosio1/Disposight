@@ -65,8 +65,8 @@ def _welcome_html(user: User, trial_end: str) -> str:
         </div>
 
         <p style="font-size: 15px; line-height: 1.6;">
-            Hey {name}, thanks for signing up. You've got <strong style="color: {_ACCENT};">7 days of full access</strong>
-            to the platform — every signal, every deal score, every contact.
+            Hey {name}, thanks for signing up. You've got <strong style="color: {_ACCENT};">7 days</strong>
+            to explore the platform — real distress signals, deal scores, and more. Upgrade anytime for full access.
         </p>
 
         <div style="background: {_SURFACE}; padding: 20px; border-radius: 8px; margin: 24px 0;">

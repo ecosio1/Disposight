@@ -331,7 +331,7 @@ export default function RegisterPage() {
               </h2>
               <p className="text-sm" style={{ color: "var(--text-muted)" }}>
                 Your <strong style={{ color: "var(--accent)" }}>7-day free trial</strong> has started.
-                You have full access to all features — no credit card required.
+                Explore the platform and see real distress intelligence — no credit card required.
               </p>
               <div
                 className="rounded-lg p-4 text-left space-y-2"

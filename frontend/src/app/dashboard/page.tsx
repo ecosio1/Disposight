@@ -57,7 +57,7 @@ function timeAgo(dateStr: string): string {
 }
 
 export default function TodayPage() {
-  const { isPro } = usePlan();
+  const { isPro, isTrial } = usePlan();
   const [stats, setStats] = useState<CommandCenterStats | null>(null);
   const [statsLoading, setStatsLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
@@ -303,7 +303,7 @@ export default function TodayPage() {
                       key={opp.company_id}
                       opportunity={opp}
                       onWatch={handleWatch}
-                      gated={false}
+                      gated={isTrial && (isHotDeal || isFresh)}
                     />
                   );
                 })}
@@ -378,7 +378,7 @@ export default function TodayPage() {
                         key={opp.company_id}
                         opportunity={opp}
                         onWatch={handleWatch}
-                        gated={false}
+                        gated={isTrial && (isHotDeal || isFresh)}
                       />
                     );
                   })}
