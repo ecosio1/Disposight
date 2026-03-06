@@ -60,7 +60,7 @@ function Chip({
 }
 
 export default function RegisterPage() {
-  const [step, setStep] = useState<1 | 2 | 3 | "confirm">(1);
+  const [step, setStep] = useState<1 | "welcome" | 2 | 3 | "confirm">(1);
 
   // Step 1
   const [fullName, setFullName] = useState("");
@@ -122,8 +122,8 @@ export default function RegisterPage() {
       return;
     }
 
-    // Session exists (email confirmation disabled) — proceed to profile steps
-    setStep(2);
+    // Session exists (email confirmation disabled) — show welcome screen
+    setStep("welcome");
   };
 
   const handleFinalSubmit = async () => {
@@ -172,18 +172,22 @@ export default function RegisterPage() {
         </div>
 
         {/* Step indicator */}
-        {step !== "confirm" && (
+        {step !== "confirm" && step !== "welcome" && (
           <div className="flex items-center justify-center gap-2 mb-6">
-            {[1, 2, 3].map((s) => (
-              <div
-                key={s}
-                className="h-2 rounded-full transition-all"
-                style={{
-                  width: s === step ? "2rem" : "0.5rem",
-                  backgroundColor: s <= step ? "var(--accent)" : "var(--border-default)",
-                }}
-              />
-            ))}
+            {[1, 2, 3].map((s) => {
+              const stepOrder = { 1: 1, 2: 2, 3: 3 } as const;
+              const current = typeof step === "number" ? step : 1;
+              return (
+                <div
+                  key={s}
+                  className="h-2 rounded-full transition-all"
+                  style={{
+                    width: s === current ? "2rem" : "0.5rem",
+                    backgroundColor: s <= current ? "var(--accent)" : "var(--border-default)",
+                  }}
+                />
+              );
+            })}
           </div>
         )}
 
@@ -309,6 +313,71 @@ export default function RegisterPage() {
           </>
         )}
 
+        {/* Welcome Screen */}
+        {step === "welcome" && (
+          <>
+            <div className="text-center space-y-4">
+              <div
+                className="w-16 h-16 mx-auto rounded-full flex items-center justify-center"
+                style={{ backgroundColor: "var(--accent-muted, rgba(16, 185, 129, 0.15))" }}
+              >
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+              </div>
+              <h2 className="text-lg font-semibold" style={{ color: "var(--text-primary)" }}>
+                Thanks for signing up!
+              </h2>
+              <p className="text-sm" style={{ color: "var(--text-muted)" }}>
+                Your <strong style={{ color: "var(--accent)" }}>3-day free trial</strong> has started.
+                You have full access to all features — no credit card required.
+              </p>
+              <div
+                className="rounded-lg p-4 text-left space-y-2"
+                style={{
+                  backgroundColor: "var(--bg-surface)",
+                  border: "1px solid var(--border-default)",
+                }}
+              >
+                <p className="text-xs font-medium" style={{ color: "var(--text-muted)" }}>
+                  What you get during your trial:
+                </p>
+                <ul className="text-sm space-y-1.5" style={{ color: "var(--text-secondary)" }}>
+                  <li className="flex items-start gap-2">
+                    <span style={{ color: "var(--accent)" }}>&#10003;</span>
+                    Real-time distress signals from 4 data pipelines
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span style={{ color: "var(--accent)" }}>&#10003;</span>
+                    AI-powered deal scoring and company risk analysis
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span style={{ color: "var(--accent)" }}>&#10003;</span>
+                    Custom watchlists and email alerts
+                  </li>
+                </ul>
+              </div>
+              <button
+                type="button"
+                onClick={() => setStep(2)}
+                className="w-full mt-2 py-2 rounded-md text-sm font-medium transition-colors"
+                style={{ backgroundColor: "var(--accent)", color: "#fff" }}
+              >
+                Set Up Your Profile
+              </button>
+              <button
+                type="button"
+                onClick={() => router.push("/dashboard")}
+                className="w-full text-xs py-1"
+                style={{ color: "var(--text-muted)" }}
+              >
+                Skip for now
+              </button>
+            </div>
+          </>
+        )}
+
         {/* Step 2: Organization + Role */}
         {step === 2 && (
           <>
@@ -374,7 +443,7 @@ export default function RegisterPage() {
               <div className="flex gap-3 pt-1">
                 <button
                   type="button"
-                  onClick={() => setStep(1)}
+                  onClick={() => setStep("welcome")}
                   className="flex-1 py-2 rounded-md text-sm font-medium"
                   style={{
                     border: "1px solid var(--border-default)",
