@@ -14,6 +14,7 @@ import { PlanGate } from "@/components/dashboard/plan-gate";
 import { UpgradePrompt } from "@/components/dashboard/upgrade-prompt";
 import { UncoveredDeals } from "@/components/dashboard/uncovered-deals";
 import { usePlan } from "@/contexts/plan-context";
+import { ActivationChecklist } from "@/components/dashboard/activation-checklist";
 
 const SIGNAL_TYPES = [
   "All", "layoff", "bankruptcy_ch7", "bankruptcy_ch11", "merger",
@@ -56,7 +57,7 @@ function timeAgo(dateStr: string): string {
 }
 
 export default function TodayPage() {
-  const { isPro, isTrial } = usePlan();
+  const { isPro } = usePlan();
   const [stats, setStats] = useState<CommandCenterStats | null>(null);
   const [statsLoading, setStatsLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
@@ -143,6 +144,7 @@ export default function TodayPage() {
   return (
     <PlanGate>
       <div className="space-y-6">
+        <ActivationChecklist />
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -301,7 +303,7 @@ export default function TodayPage() {
                       key={opp.company_id}
                       opportunity={opp}
                       onWatch={handleWatch}
-                      gated={isTrial && (isHotDeal || isFresh)}
+                      gated={false}
                     />
                   );
                 })}
@@ -376,7 +378,7 @@ export default function TodayPage() {
                         key={opp.company_id}
                         opportunity={opp}
                         onWatch={handleWatch}
-                        gated={isTrial && (isHotDeal || isFresh)}
+                        gated={false}
                       />
                     );
                   })}

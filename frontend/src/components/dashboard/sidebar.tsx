@@ -29,7 +29,7 @@ export function Sidebar() {
   const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
   const { newCount, dismiss } = useNewSignals();
-  const { user } = usePlan();
+  const { user, isTrial, daysLeft } = usePlan();
   const isAdmin = user?.role === "owner" || user?.role === "admin";
 
   const allNavItems = isAdmin
@@ -137,6 +137,33 @@ export function Sidebar() {
           </div>
         ))}
       </nav>
+
+      {/* Trial countdown banner */}
+      {isTrial && daysLeft !== null && !collapsed && (
+        <div
+          className="mx-2 mb-1 rounded-lg p-3"
+          style={{
+            background: daysLeft <= 3
+              ? "linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(239, 68, 68, 0.1))"
+              : "linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 95, 70, 0.1))",
+            border: `1px solid ${daysLeft <= 3 ? "rgba(249, 115, 22, 0.3)" : "rgba(16, 185, 129, 0.2)"}`,
+          }}
+        >
+          <p className="text-xs font-semibold" style={{ color: daysLeft <= 3 ? "#f97316" : "var(--accent)" }}>
+            {daysLeft <= 0 ? "Trial expired" : `${daysLeft} day${daysLeft === 1 ? "" : "s"} left in trial`}
+          </p>
+          <Link
+            href="/dashboard/settings"
+            className="block mt-1.5 text-center px-2 py-1.5 rounded text-xs font-medium"
+            style={{
+              backgroundColor: daysLeft <= 3 ? "#f97316" : "var(--accent)",
+              color: "#fff",
+            }}
+          >
+            Upgrade Now
+          </Link>
+        </div>
+      )}
 
       <div className="border-t px-2 py-3 space-y-1" style={{ borderColor: "var(--border-default)" }}>
         <button

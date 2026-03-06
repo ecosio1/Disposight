@@ -66,7 +66,7 @@ async def auth_callback(request: Request, body: AuthCallbackRequest, user_id: Cu
         name=tenant_name,
         slug=slug,
         plan="trialing",
-        trial_ends_at=datetime.now(timezone.utc) + timedelta(days=3),
+        trial_ends_at=datetime.now(timezone.utc) + timedelta(days=14),
     )
     db.add(tenant)
     await db.flush()
