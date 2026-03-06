@@ -14,32 +14,20 @@ export default function AuthCallbackPage() {
 
     const supabase = createClient();
 
-    // With implicit flow, Supabase sends tokens in the URL hash fragment.
-    // The Supabase client auto-detects them via onAuthStateChange.
-    // With PKCE flow (fallback), tokens come as ?code= query param.
+    // With implicit flow, the client auto-processes #access_token=...
+    // hash fragments during init and fires onAuthStateChange.
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
-        if (session) {
+        if (session && (event === "SIGNED_IN" || event === "INITIAL_SESSION")) {
           router.replace("/dashboard");
         }
       }
     );
 
-    // Also try explicit code exchange in case PKCE code is in the URL
-    const code = new URLSearchParams(window.location.search).get("code");
-    if (code) {
-      supabase.auth.exchangeCodeForSession(code).then(({ data }) => {
-        if (data.session) {
-          router.replace("/dashboard");
-        }
-      });
-    }
-
-    // If no auth event fires within 5 seconds, check if already authenticated
-    const timeout = setTimeout(() => {
-      supabase.auth.getUser().then(({ data }) => {
-        router.replace(data?.user ? "/dashboard" : "/login?error=auth_failed");
-      });
+    // Safety timeout — if no auth event fires in 5s, check directly
+    const timeout = setTimeout(async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      router.replace(session ? "/dashboard" : "/login?error=auth_failed");
     }, 5000);
 
     return () => {

@@ -1,37 +1,63 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase";
 
 export function SessionGuard({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const [authenticated, setAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // If the user logged in without "Remember me" and this is a new browser
-    // session (sessionStorage is empty), sign them out.
+    const supabase = createClient();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        if (session) {
+          setAuthenticated(true);
+        } else if (event === "INITIAL_SESSION" || event === "SIGNED_OUT") {
+          router.replace("/login");
+        }
+      }
+    );
+
+    // "Remember me" / session-only logic
     const remember = sessionStorage.getItem("disposight_remember");
     const sessionOnly = sessionStorage.getItem("disposight_session_only");
 
     if (!remember && !sessionOnly) {
-      // New browser session — check if there's a persisted auth cookie
-      // from a previous "session only" login that should be cleared.
       const wasPreviouslySessionOnly = localStorage.getItem("disposight_session_only");
       if (wasPreviouslySessionOnly) {
         localStorage.removeItem("disposight_session_only");
-        const supabase = createClient();
         supabase.auth.signOut().then(() => router.push("/login"));
       }
     }
 
-    // Persist the session-only flag to localStorage so we can detect
-    // new browser sessions (sessionStorage clears on close).
     if (sessionOnly) {
       localStorage.setItem("disposight_session_only", "1");
     } else if (remember) {
       localStorage.removeItem("disposight_session_only");
     }
+
+    return () => subscription.unsubscribe();
   }, [router]);
+
+  if (authenticated === null) {
+    return (
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ backgroundColor: "var(--bg-base)" }}
+      >
+        <div
+          className="w-8 h-8 border-2 rounded-full animate-spin"
+          style={{
+            borderColor: "var(--border-default)",
+            borderTopColor: "var(--accent)",
+          }}
+        />
+      </div>
+    );
+  }
 
   return <>{children}</>;
 }
