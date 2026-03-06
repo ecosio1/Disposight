@@ -38,6 +38,16 @@ export async function GET(request: NextRequest) {
     if (!error) {
       return response;
     }
+
+    // Log the error for debugging
+    console.error("[auth/callback] exchangeCodeForSession failed:", error.message);
+
+    // If PKCE exchange failed, check if user is already authenticated
+    // (can happen when middleware redirects from Site URL with stale code)
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      return response;
+    }
   }
 
   return NextResponse.redirect(`${origin}/login?error=auth_failed`);

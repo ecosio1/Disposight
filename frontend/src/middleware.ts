@@ -4,13 +4,14 @@ import type { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
   // If an auth code arrives at any page (e.g. Supabase redirected to site URL
-  // instead of /auth/callback), redirect to the callback handler to exchange it.
+  // instead of /auth/callback), rewrite (not redirect) to the callback handler.
+  // Using rewrite preserves cookies (including PKCE code verifier) that a
+  // redirect might lose.
   const code = request.nextUrl.searchParams.get("code");
   if (code && !request.nextUrl.pathname.startsWith("/auth/callback")) {
     const url = request.nextUrl.clone();
     url.pathname = "/auth/callback";
-    // Preserve the code parameter for the callback handler
-    return NextResponse.redirect(url);
+    return NextResponse.rewrite(url);
   }
 
   let supabaseResponse = NextResponse.next({ request });
