@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { AuthHashDetector } from "@/components/auth-hash-detector";
 import "./globals.css";
 
 const GA_ID = "G-6RX0SBLEWC";
@@ -86,6 +87,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
+        <AuthHashDetector />
         {children}
       </body>
     </html>
