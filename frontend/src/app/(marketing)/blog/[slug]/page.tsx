@@ -12,6 +12,9 @@ import { SourcesSection } from "@/components/blog/sources-section";
 import { CTABlock } from "@/components/blog/cta-block";
 import { ScrollToTop } from "@/components/blog/scroll-to-top";
 import { BlogCard } from "@/components/blog/blog-card";
+import { InlineCTA } from "@/components/blog/inline-cta";
+import { StickySidebarCTA } from "@/components/blog/sticky-sidebar-cta";
+import { INLINE_CTA_COPY } from "@/lib/blog/cta-copy";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
 export async function generateStaticParams() {
@@ -63,11 +66,23 @@ export default async function BlogPostPage({
 
   const related = getRelatedPosts(slug, 3);
   const categoryInfo = BLOG_CATEGORIES[post.category];
+  const inlineCta = INLINE_CTA_COPY[post.category];
   const date = new Date(post.publishedAt).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
+
+  // Split body at ~midpoint (after 5th h2) to inject inline CTA
+  const h2Regex = /^## /gm;
+  const h2Positions: number[] = [];
+  let match;
+  while ((match = h2Regex.exec(post.body)) !== null) {
+    h2Positions.push(match.index);
+  }
+  const splitIndex = h2Positions.length >= 6 ? h2Positions[5] : h2Positions[Math.floor(h2Positions.length / 2)] ?? null;
+  const bodyFirstHalf = splitIndex !== null ? post.body.slice(0, splitIndex) : post.body;
+  const bodySecondHalf = splitIndex !== null ? post.body.slice(splitIndex) : null;
 
   return (
     <>
@@ -139,12 +154,24 @@ export default async function BlogPostPage({
         <div className="flex gap-10">
           {/* TOC sidebar (hidden on mobile) */}
           <aside className="hidden lg:block w-56 flex-shrink-0">
-            <TableOfContents headings={post.headings} />
+            <div className="sticky top-24">
+              <TableOfContents headings={post.headings} />
+              <StickySidebarCTA />
+            </div>
           </aside>
 
           {/* Main content */}
           <div className="flex-1 min-w-0">
-            <MarkdownRenderer content={post.body} />
+            <MarkdownRenderer content={bodyFirstHalf} />
+            {bodySecondHalf && (
+              <>
+                <InlineCTA
+                  headline={inlineCta.headline}
+                  description={inlineCta.description}
+                />
+                <MarkdownRenderer content={bodySecondHalf} />
+              </>
+            )}
             <ScrollReveal>
               <CTABlock cta={post.cta} />
             </ScrollReveal>
