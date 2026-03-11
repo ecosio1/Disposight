@@ -133,7 +133,7 @@ async def stripe_webhook(request: Request, db: DbSession):
 
     try:
         event = stripe.Webhook.construct_event(payload, sig_header, settings.stripe_webhook_secret)
-    except (ValueError, stripe.error.SignatureVerificationError):
+    except (ValueError, stripe.SignatureVerificationError):
         raise HTTPException(status_code=400, detail="Invalid webhook signature")
 
     if event["type"] == "checkout.session.completed":

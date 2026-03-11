@@ -153,6 +153,7 @@ async def get_me(request: Request, user_id: CurrentUserId, db: DbSession):
             "score_breakdown_mode": limits.score_breakdown_mode,
             "csv_export": limits.csv_export,
             "team_pipeline": limits.team_pipeline,
+            "contacts_per_day": limits.contacts_per_day,
         },
     }
 
