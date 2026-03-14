@@ -29,13 +29,18 @@ export function InlineCTA({
           {description}
         </p>
       </div>
-      <Link
-        href={buttonUrl}
-        className="inline-block px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-all hover:brightness-110 flex-shrink-0"
-        style={{ backgroundColor: "var(--accent)", color: "#fff" }}
-      >
-        {buttonText}
-      </Link>
+      <div className="flex-shrink-0 text-center">
+        <Link
+          href={buttonUrl}
+          className="inline-block px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-all hover:brightness-110"
+          style={{ backgroundColor: "var(--accent)", color: "#fff" }}
+        >
+          {buttonText}
+        </Link>
+        <p className="text-[11px] mt-1" style={{ color: "var(--text-muted)" }}>
+          No credit card needed
+        </p>
+      </div>
     </aside>
   );
 }

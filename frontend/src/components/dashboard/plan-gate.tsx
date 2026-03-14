@@ -97,7 +97,7 @@ export function PlanGate({ children }: { children: ReactNode }) {
             Upgrade Now
           </Link>
           <p className="text-xs mt-3" style={{ color: "var(--text-muted)" }}>
-            Starting at $199/month
+            Starting at $199/month &middot; No credit card needed to start your trial
           </p>
         </div>
       </div>

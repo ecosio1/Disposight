@@ -21,6 +21,7 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { ScrollLink } from "@/components/scroll-link";
 import { Tooltip } from "@/components/tooltip";
 import { CountUp } from "@/components/count-up";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 
 const sourceTooltips: Record<string, string> = {
   "SEC EDGAR": "U.S. Securities and Exchange Commission filings — 8-K reports on M&A, restructuring, and asset impairments",
@@ -836,6 +837,14 @@ export default function HomePage() {
         </div>
       </section>
       </ScrollReveal>
+
+      {/* Newsletter */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 pb-16">
+        <NewsletterSignup
+          headline="Not ready to sign up? Get the weekly digest."
+          description="Every Monday: the week's top WARN filings, bankruptcies, SEC disclosures, and closures — curated for deal teams. No account needed."
+        />
+      </section>
 
       {/* Footer */}
       <footer

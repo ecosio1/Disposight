@@ -369,6 +369,9 @@ export function UpgradeFlow({
         >
           {loading ? "Loading..." : isTrial ? "Subscribe Now" : "Subscribe"}
         </button>
+        <p className="text-xs text-center mt-2" style={{ color: "var(--text-muted)" }}>
+          No credit card needed for your free trial
+        </p>
       </div>
     </div>
   );

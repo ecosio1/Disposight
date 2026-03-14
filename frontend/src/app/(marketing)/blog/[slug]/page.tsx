@@ -16,6 +16,7 @@ import { InlineCTA } from "@/components/blog/inline-cta";
 import { StickySidebarCTA } from "@/components/blog/sticky-sidebar-cta";
 import { INLINE_CTA_COPY } from "@/lib/blog/cta-copy";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 
 export async function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -157,6 +158,7 @@ export default async function BlogPostPage({
             <div className="sticky top-24">
               <TableOfContents headings={post.headings} />
               <StickySidebarCTA />
+              <NewsletterSignup variant="compact" headline="Weekly distress signals" />
             </div>
           </aside>
 
@@ -181,6 +183,13 @@ export default async function BlogPostPage({
             <ScrollReveal>
               <AuthorSection author={post.author} />
             </ScrollReveal>
+            <div className="mt-8">
+              <NewsletterSignup
+                variant="inline"
+                headline="Get signals like these every Monday"
+                description="Free weekly digest of the top WARN filings, bankruptcies, and closures — delivered to your inbox. No account needed."
+              />
+            </div>
           </div>
         </div>
 

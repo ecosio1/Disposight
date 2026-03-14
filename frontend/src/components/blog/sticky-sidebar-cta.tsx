@@ -24,6 +24,9 @@ export function StickySidebarCTA() {
       >
         Start Free Trial
       </Link>
+      <p className="text-[11px] text-center mt-1.5" style={{ color: "var(--text-muted)" }}>
+        No credit card needed
+      </p>
     </div>
   );
 }

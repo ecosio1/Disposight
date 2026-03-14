@@ -17,13 +17,16 @@ export function UpgradePrompt({ message }: UpgradePromptProps) {
       }}
     >
       <span>{message}</span>
-      <Link
-        href="/dashboard/settings"
-        className="shrink-0 px-3 py-1 rounded text-xs font-medium transition-colors"
-        style={{ backgroundColor: "var(--accent)", color: "#fff" }}
-      >
-        Upgrade Plan
-      </Link>
+      <div className="flex items-center gap-2 shrink-0">
+        <Link
+          href="/dashboard/settings"
+          className="px-3 py-1 rounded text-xs font-medium transition-colors"
+          style={{ backgroundColor: "var(--accent)", color: "#fff" }}
+        >
+          Upgrade Plan
+        </Link>
+        <span className="text-xs" style={{ color: "var(--text-muted)" }}>No credit card needed</span>
+      </div>
     </div>
   );
 }

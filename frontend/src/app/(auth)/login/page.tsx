@@ -69,6 +69,9 @@ export default function LoginPage() {
           <p className="text-sm mt-2" style={{ color: "var(--text-muted)" }}>
             Sign in to your account
           </p>
+          <p className="text-xs mt-1" style={{ color: "var(--text-muted)" }}>
+            No credit card needed to get started
+          </p>
         </div>
 
         <button

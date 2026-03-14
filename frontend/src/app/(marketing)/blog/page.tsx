@@ -6,6 +6,7 @@ import type { BlogCategory } from "@/lib/blog/types";
 import { BlogCard } from "@/components/blog/blog-card";
 import { BlogPagination } from "@/components/blog/blog-pagination";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -110,6 +111,11 @@ export default async function BlogPage({
         totalPages={totalPages}
         category={categoryFilter}
       />
+
+      {/* Newsletter signup */}
+      <div className="mt-12">
+        <NewsletterSignup />
+      </div>
     </div>
   );
 }
