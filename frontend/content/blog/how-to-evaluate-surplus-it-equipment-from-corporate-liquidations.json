@@ -1,0 +1,168 @@
+{
+  "id": "b7e3a1d4-9f82-4c6b-a153-7d4e8f2c9b16",
+  "slug": "how-to-evaluate-surplus-it-equipment-from-corporate-liquidations",
+  "title": "How to Evaluate Surplus IT Equipment from Corporate Liquidations",
+  "description": "Learn how to evaluate surplus IT equipment from corporate liquidations. Expert strategies for assessing servers, networking gear, and data center assets at maximum value.",
+  "excerpt": "When a corporation enters liquidation, its IT infrastructure often represents one of the most valuable and misunderstood asset classes on the floor. Servers, networking equipment, storage arrays, and...",
+  "body": "When a corporation enters liquidation, its IT infrastructure often represents one of the most valuable and misunderstood asset classes on the floor. Servers, networking equipment, storage arrays, and data center hardware can retain significant residual value — but only if buyers know exactly what to look for and how to price it. The difference between a six-figure windfall and a warehouse full of e-waste often comes down to evaluation discipline.\n\nFor liquidation firms, distressed PE funds, and equipment remarketers, surplus IT equipment from corporate shutdowns represents a recurring, high-margin opportunity. But it requires specialized knowledge that goes beyond traditional industrial asset appraisal. This guide breaks down exactly how to evaluate these assets, avoid the traps, and move faster than your competition.\n\n## Quick Answer\n- **Surplus IT equipment from corporate liquidations can retain 15-40% of original purchase price** when properly evaluated and remarketed within the first 90 days of availability.\n- **Focus on enterprise-grade servers, networking switches, storage arrays, and UPS systems** — these hold value longest and have the deepest secondary markets.\n- **Age is the single biggest value driver**: equipment older than 5 years typically drops below 10% residual value, while 1-3 year old gear can command 30-50% of original cost.\n- **Data destruction compliance is non-negotiable** — buyers who can handle certified data wiping (NIST 800-88) command better lot pricing because sellers need the liability transferred.\n- **Speed matters more than perfection**: the first credible buyer to the table in a Chapter 7 liquidation typically gets the best pricing, often 20-30% below fair secondary market value.\n- **Always verify licensing transferability** — VMware, Oracle, and Microsoft enterprise licenses frequently cannot transfer, which can eliminate 40-60% of perceived software value overnight.\n\n## Market Snapshot\nThe global secondary IT equipment market reached $15.4 billion in 2025, according to IDC, and is projected to grow at 9.2% CAGR through 2030. This growth is fueled by three converging forces: accelerating corporate cloud migrations that dump on-premises infrastructure onto the market, the rising cost of new enterprise hardware driven by semiconductor supply constraints, and increasing ESG pressure on organizations to extend equipment lifecycles rather than landfill functional assets.\n\nCorporate liquidations are a particularly rich source of surplus IT equipment. In 2025 alone, WARN Act filings indicated over 2,100 facility closures affecting 500+ employees each — and nearly every one of those facilities contained IT infrastructure ranging from a few server racks to full-scale data centers. When WeWork filed for Chapter 11 in late 2023, its IT assets across 600+ locations represented an estimated $180-250 million in original equipment value. Buyers who moved quickly on the networking equipment (Cisco Meraki access points, Juniper switches) captured assets at 18-25 cents on the dollar.\n\nThe demand side is equally compelling. Small and mid-market companies, managed service providers, and organizations in developing markets are active buyers of refurbished enterprise IT equipment. Dell PowerEdge R750 servers that list new at $12,000-$18,000 regularly trade at $4,500-$7,000 on the secondary market with 2-3 years of useful life remaining. HPE ProLiant DL380 Gen10 Plus units hold similar ratios.\n\nNotably, the hyperscaler refresh cycle creates predictable supply waves. When Amazon, Microsoft, or Google rotate out data center hardware on their typical 3-5 year cycles, the volume can flood regional secondary markets. In Q3 2025, a single Microsoft Azure region decommission in Virginia released an estimated 14,000 servers onto the secondary market, temporarily depressing prices for that generation of Intel Xeon processors by 15-20%.\n\n![Rows of servers in a modern data center facility](https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODA0MDZ8MHwxfHNlYXJjaHwxfHxkYXRhJTIwY2VudGVyJTIwc2VydmVyJTIwcm9vbXxlbnwxfDB8fHx8MTcxMDAwMDAwMHww&ixlib=rb-4.1.0&q=80&w=1200)\n*Photo: Photo by [Taylor Vick](https://unsplash.com/@tvick) on [Unsplash](https://unsplash.com)*\n\n## Step-by-Step Guide\n1. **Identify the Source and Timeline**: Determine the type of liquidation event (Chapter 7, Chapter 11 363 sale, voluntary dissolution, or facility closure). Chapter 7 liquidations typically offer the steepest discounts but the shortest evaluation windows — often 5-10 business days. Court-appointed trustees have a fiduciary duty to maximize creditor recovery, but they also need to move fast. WARN Act filings give you 60 days of advance notice before facility closures, which is your competitive advantage.\n\n2. **Request or Build a Complete Asset Inventory**: Demand a detailed equipment manifest including manufacturer, model number, serial number, configuration (CPU, RAM, storage), and age. If the seller cannot provide this, budget 1-2 days of on-site inventory work. Use tools like Lansweeper or Device42 for network-connected discovery. For powered-down equipment, physical inspection of asset tags and chassis labels is required.\n\n3. **Categorize Assets by Remarketing Tier**: Sort every item into one of four tiers based on secondary market demand:\n   - **Tier 1 (High Value)**: Enterprise servers under 4 years old, core networking switches (Cisco Nexus, Arista), enterprise storage arrays (NetApp, Pure Storage, Dell EMC), GPU servers\n   - **Tier 2 (Moderate Value)**: UPS systems, PDUs, enterprise-grade monitors, rack infrastructure, KVM switches\n   - **Tier 3 (Low Value)**: Desktop computers, standard laptops, consumer-grade networking, peripherals\n   - **Tier 4 (Scrap/Recycle)**: Equipment older than 7 years, damaged hardware, proprietary systems with no secondary market\n\n4. **Verify Condition and Functionality**: For high-value lots, insist on power-on testing. A server that POSTs and passes BIOS diagnostics is worth 3-5x more than one sold \"as-is, untested.\" Check for physical damage, missing components (drive caddies, RAM modules, power supplies), and verify that firmware versions are current or updatable. Missing hard drive caddies on a Dell PowerEdge might seem minor, but they cost $15-30 each — multiply by 200 servers and it materially impacts your margin.\n\n5. **Research Current Secondary Market Pricing**: Check completed sales on IT reseller marketplaces (ServerMonkey, Curvature, Park Place Technologies), eBay completed listings for commodity items, and broker networks. Prices can vary 30-50% depending on configuration. A Dell R740xd with dual Xeon Gold 6248R processors and 512GB RAM will command a very different price than the same chassis with entry-level CPUs and 64GB.\n\n6. **Assess Data Destruction Requirements**: Determine whether drives are included and what data destruction standard the seller requires. If you can offer NIST 800-88 certified wiping or physical destruction with certificates of destruction, you become a more attractive buyer — many sellers will accept a 5-10% lower price from a buyer who handles the data liability versus one who offers more money but no compliance guarantee.\n\n7. **Calculate Total Acquisition Cost**: Factor in the purchase price, transportation (IT equipment is heavy — a full 42U rack can weigh 1,500-2,500 lbs), testing and refurbishment labor, data destruction costs, warehousing, and your remarketing timeline. A common mistake is underestimating logistics: shipping a pallet of servers cross-country runs $800-$1,500, and specialized freight for full racks can exceed $3,000.\n\n8. **Structure Your Offer**: Present a lot-based offer with clear terms. Liquidation trustees and corporate sellers prefer clean, all-inclusive bids over cherry-picking. If the lot includes Tier 3 and Tier 4 items, factor their disposal cost into your bid but present a single number. Speed and certainty of close are worth as much as price in most liquidation scenarios.\n\n![Close-up of network cables connected to server equipment](https://images.unsplash.com/photo-1544197150-b99a580bb7a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODA0MDZ8MHwxfHNlYXJjaHwxfHxuZXR3b3JrJTIwY2FibGVzJTIwc2VydmVyJTIwZXF1aXBtZW50fGVufDF8MHx8fDE3MTAwMDAwMDB8MA&ixlib=rb-4.1.0&q=80&w=1200)\n*Photo: Photo by [Jordan Harrison](https://unsplash.com/@jordanharrison) on [Unsplash](https://unsplash.com)*\n\n## Decision Framework\nThe evaluation decision hinges on three primary variables: asset age, lot size, and time pressure.\n\nIf the equipment is **under 3 years old and the lot exceeds 100 units**, this is a priority acquisition. Move immediately. Enterprise servers and networking gear in this age range retain 30-50% of original value, and lot sizes above 100 units attract fewer competing buyers due to the capital and logistics requirements. Your margin on these deals typically runs 40-60% after refurbishment and remarketing costs.\n\nIf the equipment is **3-5 years old**, it remains viable but requires more selective evaluation. Focus on configurations with maximum RAM, current-generation processors, and enterprise storage. Avoid entry-level configurations — a 4-year-old server with minimal specs competes directly against new budget hardware and loses.\n\nIf the equipment is **over 5 years old**, only pursue it if the lot includes high-value networking equipment (Cisco Catalyst 9000 series holds value well) or specialized hardware (GPU clusters, high-performance computing nodes). Generic compute hardware in this age range is typically worth more as scrap metal and precious metals recovery than as functional equipment.\n\nFor **time-pressured Chapter 7 sales**, prioritize speed over thoroughness. A 70% confident bid submitted in 48 hours beats a 95% confident bid submitted in two weeks. Build a standard discount matrix for common equipment types so you can bid quickly when opportunities arise.\n\n## Opportunity Playbook\nThe most profitable surplus IT equipment deals share common characteristics that experienced buyers learn to recognize.\n\n**Financial services firm closures** are gold mines. Banks and hedge funds run the latest enterprise hardware with maximum configurations because they need the performance for trading systems and regulatory compliance. When Signature Bank failed in 2023, its IT infrastructure included relatively new Dell and HPE servers with top-tier configurations that buyers acquired at 20-30 cents on the dollar through the FDIC receivership process.\n\n**Retail chain bankruptcies** offer volume plays. When Bed Bath & Beyond liquidated, its 360 stores each contained point-of-sale systems, networking equipment, and back-office servers. Individually modest, but at scale the networking equipment alone (managed switches, wireless access points, security appliances) represented a multi-million dollar remarketing opportunity.\n\n**Data center consolidations from M&A activity** produce the highest-quality surplus. When a company acquires another and migrates to its own infrastructure, the acquired company's data center equipment is surplus by definition. These assets are typically well-maintained, fully documented, and available in large, uniform lots — the ideal scenario for a remarketer.\n\nThe playbook is straightforward: monitor WARN Act filings for facility closures at technology companies, financial institutions, and large enterprises. Cross-reference with SEC 8-K filings for M&A activity and Chapter 7/11 bankruptcy filings. The firms that see these signals first get first-mover advantage on the surplus equipment.\n\n![Warehouse with organized inventory on industrial shelving](https://images.unsplash.com/photo-1553413077-190dd305871c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODA0MDZ8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBpbnZlbnRvcnklMjBzaGVsdmluZ3xlbnwxfDB8fHx8MTcxMDAwMDAwMHww&ixlib=rb-4.1.0&q=80&w=1200)\n*Photo: Photo by [Ruchindra Gunasekara](https://unsplash.com/@ruchindra) on [Unsplash](https://unsplash.com)*\n\n## Common Mistakes\n1. **Bidding on equipment without verifying model numbers and configurations**: A \"Dell PowerEdge R740\" could be a $6,000 asset or a $1,200 asset depending on CPU, RAM, and storage configuration. Always get the full spec sheet before bidding.\n2. **Ignoring software licensing restrictions**: Oracle and VMware enterprise licenses are notoriously non-transferable. Buyers who factor software value into their bids routinely overpay by 30-50%.\n3. **Underestimating logistics costs**: IT equipment is dense and fragile. A 42U rack weighs over a ton. Budget $150-300 per pallet for local transport and $800-1,500 for cross-country shipping. Failing to account for this erodes margins fast.\n4. **Skipping power-on testing for \"as-is\" lots**: Untested equipment carries a 15-25% failure rate on average. If you cannot test before purchase, discount your bid accordingly and never pay more than 40% of tested-good secondary market value.\n5. **Cherry-picking high-value items from a lot**: Trustees and liquidators strongly prefer all-in bids. A buyer who takes the full lot at a lower per-unit price almost always wins over one who only wants the servers and leaves the cabling and racks behind.\n6. **Missing the evaluation window**: Chapter 7 trustees move fast. If you cannot inspect and bid within 5-10 business days of notification, you will lose the deal to a faster competitor. Have your evaluation framework templated and ready.\n7. **Failing to account for data destruction liability**: If drives contain customer PII, HIPAA data, or financial records, the data destruction cost and compliance burden is yours. Budget $8-15 per drive for certified wiping and factor it into your offer.\n8. **Overpaying for commodity hardware**: Standard desktops, consumer laptops, and basic peripherals have razor-thin remarketing margins. Do not let these items inflate your lot bid — value them at scrap or near-zero.\n9. **Neglecting warranty and support transferability**: Some HPE and Dell enterprise warranties transfer with the hardware; others do not. Transferable warranty adds 10-15% to resale value. Verify before you bid.\n10. **Not building relationships with bankruptcy trustees and receivers**: The best deals never hit public auction. Trustees who know and trust you will call you first. Invest in these relationships consistently.\n11. **Storing equipment too long before remarketing**: IT equipment depreciates roughly 2-4% per month. Every week your warehouse holds inventory is margin evaporating. Target a 60-90 day turn from acquisition to sale.\n\n## How DispoSight Helps\nDispoSight is purpose-built for the exact workflow surplus IT equipment buyers need. Our four intelligence pipelines — WARN Act filings, GDELT news monitoring, SEC EDGAR 8-K filings, and CourtListener bankruptcy tracking — surface corporate distress events that produce surplus IT equipment before they hit public auction channels.\n\nWhen a technology company files a WARN Act notice for a facility closure affecting 500 employees, DispoSight flags it within hours and scores the opportunity based on estimated asset volume, company size, and distress severity. When an 8-K filing reveals an acquisition that will likely produce redundant data center infrastructure, DispoSight connects the dots and alerts you. When a Chapter 7 petition hits the bankruptcy court, you see it the same day — not two weeks later when the auctioneer's catalog goes live.\n\nOur deal scoring engine evaluates each signal for asset disposition potential, filtering out events unlikely to produce 100+ assets. This means your team spends time evaluating real opportunities, not chasing dead ends. Combined with watchlist alerts and daily intelligence digests, DispoSight gives equipment remarketers and liquidation buyers the speed advantage that determines who gets the deal.\n\n## Frequently Asked Questions\n1. **What types of surplus IT equipment hold the most value from corporate liquidations?**\n   Enterprise-grade servers (Dell PowerEdge, HPE ProLiant), core networking switches (Cisco Nexus, Arista), enterprise storage arrays (NetApp, Pure Storage), and GPU servers consistently command the highest residual values — typically 25-45% of original purchase price when under 3 years old.\n\n2. **How quickly does surplus IT equipment lose value after a liquidation event?**\n   IT equipment depreciates approximately 2-4% per month on the secondary market. The optimal remarketing window is 60-90 days from acquisition. After 6 months, most equipment will have lost an additional 15-25% of its value at the time of purchase.\n\n3. **What is the typical discount when buying IT equipment from a Chapter 7 liquidation?**\n   Chapter 7 liquidation buyers typically acquire equipment at 15-35 cents on the original dollar, depending on age, condition, and competitive bidding dynamics. The fastest buyers often secure pricing 20-30% below fair secondary market value.\n\n4. **How do I handle data destruction requirements when buying surplus IT equipment?**\n   Obtain NIST 800-88 certification capability, either in-house or through a certified ITAD partner. Providing certificates of destruction to the seller transfers data liability and often secures you better pricing. Budget $8-15 per drive for certified wiping.\n\n5. **Can software licenses be transferred when purchasing surplus IT equipment?**\n   It depends entirely on the vendor and license type. Microsoft Volume Licensing and some Dell/HPE OEM licenses can transfer. Oracle and VMware enterprise licenses typically cannot. Always verify transferability before including software value in your bid.\n\n6. **What should I look for during an on-site evaluation of surplus IT equipment?**\n   Prioritize verifying model numbers and configurations against the provided manifest, conducting power-on testing for high-value items, checking for missing components (drive caddies, RAM modules, PSUs), and assessing physical condition. Also document rack layout and cabling for logistics planning.\n\n7. **How do I find surplus IT equipment opportunities before they go to public auction?**\n   Monitor WARN Act filings for facility closures at technology-heavy companies, track SEC 8-K filings for M&A activity that produces redundant infrastructure, follow Chapter 7 and 11 bankruptcy filings, and build relationships with bankruptcy trustees and corporate asset managers. Tools like DispoSight automate this monitoring across all four channels.\n\n8. **What is the minimum lot size that makes a surplus IT equipment deal worthwhile?**\n   For most remarketers, the breakeven point is around 50-100 units of enterprise equipment. Below that, the fixed costs of site visits, logistics, and testing eat into margins. However, high-value specialty equipment (GPU servers, high-end storage) can be profitable in much smaller quantities.\n\n9. **How do I price a mixed lot that includes both high-value and low-value IT equipment?**\n   Value each tier separately using current secondary market comparables, then apply a blended discount. High-value items at 25-40% of original cost, moderate items at 10-20%, and low-value items at scrap value ($2-5 per unit for recycling). Present a single all-inclusive bid to the seller.\n\n10. **What are the biggest risks when buying surplus IT equipment from liquidations?**\n    The top risks are equipment that fails power-on testing (15-25% failure rate for untested lots), non-transferable software licenses inflating perceived value, hidden data destruction liabilities, and logistics costs exceeding estimates. Mitigate these by building appropriate risk discounts into every bid.\n\n## Action Plan\n1. Build a standardized evaluation template with tier categories, pricing benchmarks, and a quick-bid calculator for common equipment types.\n2. Establish NIST 800-88 data destruction capability — either in-house or through a certified partner — to differentiate your bids.\n3. Set up monitoring for WARN Act filings, Chapter 7 bankruptcy filings, and SEC 8-K filings at technology companies and large enterprises.\n4. Develop relationships with 3-5 bankruptcy trustees and corporate asset disposition managers in your target geography.\n5. Create a logistics playbook with pre-negotiated freight rates for IT equipment pallets and full-rack shipments.\n6. Subscribe to secondary market pricing databases and track completed sales weekly for your target equipment categories.\n7. Build a buyer network of MSPs, refurbishers, and international resellers to ensure you can move acquired inventory within 60-90 days.\n8. Sign up for DispoSight to automate distress signal monitoring across all four intelligence pipelines and receive alerts on IT-heavy liquidation events.\n\n## Related Reading\n- [Decommissioning Data Centers: Key Strategies for Success](/blog/decommissioning-data-centers-key-strategies-for-success)\n- [Navigating Distressed Asset Sales in Equipment Remarketing](/blog/navigating-distressed-asset-sales-in-equipment-remarketing)\n- [Navigating the World of Surplus Equipment Buyers](/blog/navigating-the-world-of-surplus-equipment-buyers)\n- [Understanding Forced Liquidation Value in Distressed Asset Markets](/blog/understanding-forced-liquidation-value-in-distressed-asset-markets)\n\n## Disclaimer\nThis article is for informational purposes only and does not constitute professional financial, legal, or investment advice. Market prices, residual values, and statistics referenced are based on publicly available data and may vary significantly based on specific circumstances, timing, and market conditions. Organizations should conduct their own due diligence and consult with qualified professionals before making any acquisition decisions. DispoSight assumes no responsibility for any actions taken based on the information provided in this article.",
+  "category": "equipment-remarketing",
+  "tags": [
+    "surplus IT equipment",
+    "corporate liquidation",
+    "equipment remarketing",
+    "IT asset disposition",
+    "data center assets"
+  ],
+  "primaryKeyword": "surplus IT equipment",
+  "author": {
+    "name": "DispoSight Research",
+    "role": "Market Intelligence Team",
+    "bio": "The DispoSight Research team monitors corporate distress signals across WARN Act filings, bankruptcy courts, SEC filings, and global news to surface asset disposition opportunities for deal-driven organizations."
+  },
+  "heroImage": {
+    "url": "https://images.unsplash.com/photo-1600267185393-e158a98703de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODA0MDZ8MHwxfHNlYXJjaHwyfHxzZXJ2ZXIlMjByb29tJTIwZGF0YSUyMGNlbnRlcnxlbnwxfDB8fHx8MTcxMDAwMDAwMHww&ixlib=rb-4.1.0&q=80&w=1200",
+    "alt": "Server room with rows of rack-mounted IT equipment and blue lighting",
+    "credit": "Photo by [Manuel Geissinger](https://unsplash.com/@artunchained) on [Unsplash](https://unsplash.com)"
+  },
+  "images": [
+    {
+      "url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODA0MDZ8MHwxfHNlYXJjaHwxfHxkYXRhJTIwY2VudGVyJTIwc2VydmVyJTIwcm9vbXxlbnwxfDB8fHx8MTcxMDAwMDAwMHww&ixlib=rb-4.1.0&q=80&w=1200",
+      "alt": "Rows of servers in a modern data center facility",
+      "credit": "Photo by [Taylor Vick](https://unsplash.com/@tvick) on [Unsplash](https://unsplash.com)"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODA0MDZ8MHwxfHNlYXJjaHwxfHxuZXR3b3JrJTIwY2FibGVzJTIwc2VydmVyJTIwZXF1aXBtZW50fGVufDF8MHx8fDE3MTAwMDAwMDB8MA&ixlib=rb-4.1.0&q=80&w=1200",
+      "alt": "Close-up of network cables connected to server equipment",
+      "credit": "Photo by [Jordan Harrison](https://unsplash.com/@jordanharrison) on [Unsplash](https://unsplash.com)"
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1553413077-190dd305871c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODA0MDZ8MHwxfHNlYXJjaHwxfHx3YXJlaG91c2UlMjBpbnZlbnRvcnklMjBzaGVsdmluZ3xlbnwxfDB8fHx8MTcxMDAwMDAwMHww&ixlib=rb-4.1.0&q=80&w=1200",
+      "alt": "Warehouse with organized inventory on industrial shelving",
+      "credit": "Photo by [Ruchindra Gunasekara](https://unsplash.com/@ruchindra) on [Unsplash](https://unsplash.com)"
+    }
+  ],
+  "headings": [
+    {
+      "level": 2,
+      "text": "Quick Answer",
+      "id": "quick-answer"
+    },
+    {
+      "level": 2,
+      "text": "Market Snapshot",
+      "id": "market-snapshot"
+    },
+    {
+      "level": 2,
+      "text": "Step-by-Step Guide",
+      "id": "step-by-step-guide"
+    },
+    {
+      "level": 2,
+      "text": "Decision Framework",
+      "id": "decision-framework"
+    },
+    {
+      "level": 2,
+      "text": "Opportunity Playbook",
+      "id": "opportunity-playbook"
+    },
+    {
+      "level": 2,
+      "text": "Common Mistakes",
+      "id": "common-mistakes"
+    },
+    {
+      "level": 2,
+      "text": "How DispoSight Helps",
+      "id": "how-disposight-helps"
+    },
+    {
+      "level": 2,
+      "text": "Frequently Asked Questions",
+      "id": "frequently-asked-questions"
+    },
+    {
+      "level": 2,
+      "text": "Action Plan",
+      "id": "action-plan"
+    },
+    {
+      "level": 2,
+      "text": "Related Reading",
+      "id": "related-reading"
+    },
+    {
+      "level": 2,
+      "text": "Disclaimer",
+      "id": "disclaimer"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What types of surplus IT equipment hold the most value from corporate liquidations?",
+      "answer": "Enterprise-grade servers (Dell PowerEdge, HPE ProLiant), core networking switches (Cisco Nexus, Arista), enterprise storage arrays (NetApp, Pure Storage), and GPU servers consistently command the highest residual values — typically 25-45% of original purchase price when under 3 years old."
+    },
+    {
+      "question": "How quickly does surplus IT equipment lose value after a liquidation event?",
+      "answer": "IT equipment depreciates approximately 2-4% per month on the secondary market. The optimal remarketing window is 60-90 days from acquisition. After 6 months, most equipment will have lost an additional 15-25% of its value at the time of purchase."
+    },
+    {
+      "question": "What is the typical discount when buying IT equipment from a Chapter 7 liquidation?",
+      "answer": "Chapter 7 liquidation buyers typically acquire equipment at 15-35 cents on the original dollar, depending on age, condition, and competitive bidding dynamics. The fastest buyers often secure pricing 20-30% below fair secondary market value."
+    },
+    {
+      "question": "How do I handle data destruction requirements when buying surplus IT equipment?",
+      "answer": "Obtain NIST 800-88 certification capability, either in-house or through a certified ITAD partner. Providing certificates of destruction to the seller transfers data liability and often secures you better pricing. Budget $8-15 per drive for certified wiping."
+    },
+    {
+      "question": "Can software licenses be transferred when purchasing surplus IT equipment?",
+      "answer": "It depends entirely on the vendor and license type. Microsoft Volume Licensing and some Dell/HPE OEM licenses can transfer. Oracle and VMware enterprise licenses typically cannot. Always verify transferability before including software value in your bid."
+    },
+    {
+      "question": "What should I look for during an on-site evaluation of surplus IT equipment?",
+      "answer": "Prioritize verifying model numbers and configurations against the provided manifest, conducting power-on testing for high-value items, checking for missing components (drive caddies, RAM modules, PSUs), and assessing physical condition. Also document rack layout and cabling for logistics planning."
+    },
+    {
+      "question": "How do I find surplus IT equipment opportunities before they go to public auction?",
+      "answer": "Monitor WARN Act filings for facility closures at technology-heavy companies, track SEC 8-K filings for M&A activity that produces redundant infrastructure, follow Chapter 7 and 11 bankruptcy filings, and build relationships with bankruptcy trustees and corporate asset managers. Tools like DispoSight automate this monitoring across all four channels."
+    },
+    {
+      "question": "What is the minimum lot size that makes a surplus IT equipment deal worthwhile?",
+      "answer": "For most remarketers, the breakeven point is around 50-100 units of enterprise equipment. Below that, the fixed costs of site visits, logistics, and testing eat into margins. However, high-value specialty equipment (GPU servers, high-end storage) can be profitable in much smaller quantities."
+    },
+    {
+      "question": "How do I price a mixed lot that includes both high-value and low-value IT equipment?",
+      "answer": "Value each tier separately using current secondary market comparables, then apply a blended discount. High-value items at 25-40% of original cost, moderate items at 10-20%, and low-value items at scrap value ($2-5 per unit for recycling). Present a single all-inclusive bid to the seller."
+    },
+    {
+      "question": "What are the biggest risks when buying surplus IT equipment from liquidations?",
+      "answer": "The top risks are equipment that fails power-on testing (15-25% failure rate for untested lots), non-transferable software licenses inflating perceived value, hidden data destruction liabilities, and logistics costs exceeding estimates. Mitigate these by building appropriate risk discounts into every bid."
+    }
+  ],
+  "sources": [
+    {
+      "title": "IDC: Worldwide Used and Refurbished IT Equipment Market Forecast",
+      "url": "https://www.idc.com/getdoc.jsp?containerId=US51442024"
+    },
+    {
+      "title": "NIST Special Publication 800-88: Guidelines for Media Sanitization",
+      "url": "https://csrc.nist.gov/publications/detail/sp/800-88/rev-1/final"
+    },
+    {
+      "title": "Global Market Insights: IT Asset Disposition Market",
+      "url": "https://www.gminsights.com/industry-analysis/IT-asset-disposition-market"
+    }
+  ],
+  "cta": {
+    "headline": "Find IT Liquidation Deals First",
+    "description": "DispoSight monitors data center decommissions, facility closures, and IT asset sell-offs across all four pipelines — so you see surplus equipment opportunities before the brokers do.",
+    "buttonText": "Start Your Free Trial",
+    "buttonUrl": "/register"
+  },
+  "wordCount": 1987,
+  "readingTime": 8,
+  "publishedAt": "2026-03-17T14:00:00.000Z",
+  "updatedAt": "2026-03-17T14:00:00.000Z",
+  "isDraft": false
+}

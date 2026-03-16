@@ -1,5 +1,101 @@
 [
   {
+    "slug": "it-asset-disposition-itad-complete-guide-for-corporate-liquidations",
+    "title": "IT Asset Disposition (ITAD): A Complete Guide for Corporate Liquidations",
+    "description": "Master IT asset disposition in corporate liquidations. Learn ITAD best practices, R2 certification, NIST 800-88 data destruction, and how to maximize recovery value.",
+    "excerpt": "IT asset disposition has evolved from a back-office compliance function into a strategic revenue recovery channel, particularly in corporate liquidation scenarios where thousands of devices must be...",
+    "category": "equipment-remarketing",
+    "tags": ["IT asset disposition", "ITAD", "IT equipment liquidation", "data destruction", "e-waste", "corporate liquidation", "R2 certification"],
+    "heroImage": {
+      "url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1200&q=80",
+      "alt": "Data center server room with rows of equipment",
+      "credit": "Unsplash"
+    },
+    "readingTime": 8,
+    "publishedAt": "2026-04-21T14:00:00.000Z",
+    "isDraft": false
+  },
+  {
+    "slug": "stalking-horse-bids-how-to-win-363-bankruptcy-auctions",
+    "title": "Stalking Horse Bids: How to Win 363 Bankruptcy Auctions",
+    "description": "Learn how stalking horse bids work in 363 bankruptcy auctions. Strategies for break-up fees, bid protections, and winning distressed asset deals.",
+    "excerpt": "In the high-stakes world of bankruptcy asset sales, the stalking horse bidder occupies a uniquely powerful position. By setting the floor price and negotiating bid protections before the auction...",
+    "category": "bankruptcy-guide",
+    "tags": ["stalking horse bid", "363 sale", "bankruptcy auction", "distressed asset acquisition", "break-up fee", "overbid"],
+    "heroImage": {
+      "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80",
+      "alt": "Gavel and legal documents on a wooden desk",
+      "credit": "Unsplash"
+    },
+    "readingTime": 15,
+    "publishedAt": "2026-04-14T14:00:00.000Z",
+    "isDraft": false
+  },
+  {
+    "slug": "fraudulent-conveyance-in-distressed-asset-deals-what-buyers-must-know",
+    "title": "Fraudulent Conveyance in Distressed Asset Deals: What Buyers Must Know",
+    "description": "Understand fraudulent conveyance risk in distressed asset deals. Learn how to protect against clawback claims and structure acquisitions safely.",
+    "excerpt": "Every distressed asset buyer's worst nightmare is closing a deal only to have a bankruptcy trustee claw it back two years later. Fraudulent conveyance law makes this scenario not just possible but...",
+    "category": "bankruptcy-guide",
+    "tags": ["fraudulent conveyance", "fraudulent transfer", "distressed asset deals", "bankruptcy clawback", "asset acquisition risk", "voidable transactions"],
+    "heroImage": {
+      "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80",
+      "alt": "Legal documents and gavel on desk",
+      "credit": "Unsplash"
+    },
+    "readingTime": 9,
+    "publishedAt": "2026-04-07T14:00:00.000Z",
+    "isDraft": false
+  },
+  {
+    "slug": "assignment-for-benefit-of-creditors-vs-bankruptcy-which-creates-better-asset-deals",
+    "title": "Assignment for the Benefit of Creditors vs Bankruptcy: Which Creates Better Asset Deals?",
+    "description": "Compare assignment for benefit of creditors (ABC) vs Chapter 7 and Chapter 11 bankruptcy for asset deals. Learn which path yields better pricing and faster closes.",
+    "excerpt": "Assignment for the benefit of creditors has quietly become one of the most important deal channels for distressed asset buyers. While bankruptcy dominates the headlines, ABCs now account for a growing...",
+    "category": "bankruptcy-guide",
+    "tags": ["assignment for benefit of creditors", "ABC", "bankruptcy alternatives", "Chapter 7", "asset liquidation", "distressed assets"],
+    "heroImage": {
+      "url": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1200&q=80",
+      "alt": "Legal library with law books and scales of justice",
+      "credit": "Unsplash"
+    },
+    "readingTime": 8,
+    "publishedAt": "2026-03-31T14:00:00.000Z",
+    "isDraft": false
+  },
+  {
+    "slug": "sec-8k-filings-a-hidden-gold-mine-for-distressed-asset-buyers",
+    "title": "SEC 8-K Filings: A Hidden Gold Mine for Distressed Asset Buyers",
+    "description": "Learn how SEC 8-K filings reveal corporate distress signals before public markets react, giving asset buyers a critical edge in sourcing disposition deals.",
+    "excerpt": "Most distressed asset buyers focus on bankruptcy dockets and WARN Act notices, but the SEC's 8-K filing system is arguably the most underutilized intelligence source in the disposition market. Every...",
+    "category": "industry-analysis",
+    "tags": ["SEC filings", "8-K filings", "distressed assets", "corporate distress signals", "asset acquisition"],
+    "heroImage": {
+      "url": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8c3RvY2slMjBtYXJrZXQlMjBmaW5hbmNpYWwlMjBkYXRhfGVufDB8MHx8fDE3MTE3Nzg2MDl8MA&ixlib=rb-4.1.0&q=80&w=1200",
+      "alt": "Financial market data and stock charts on a digital display",
+      "credit": "Unsplash"
+    },
+    "readingTime": 8,
+    "publishedAt": "2026-03-24T14:00:00.000Z",
+    "isDraft": false
+  },
+  {
+    "slug": "how-to-evaluate-surplus-it-equipment-from-corporate-liquidations",
+    "title": "How to Evaluate Surplus IT Equipment from Corporate Liquidations",
+    "description": "Learn how to evaluate surplus IT equipment from corporate liquidations. Expert strategies for assessing servers, networking gear, and data center assets at maximum value.",
+    "excerpt": "When a corporation enters liquidation, its IT infrastructure often represents one of the most valuable and misunderstood asset classes on the floor. Servers, networking equipment, storage arrays, and...",
+    "category": "equipment-remarketing",
+    "tags": ["surplus IT equipment", "corporate liquidation", "equipment remarketing", "IT asset disposition", "data center assets"],
+    "heroImage": {
+      "url": "https://images.unsplash.com/photo-1600267185393-e158a98703de?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4ODA0MDZ8MHwxfHNlYXJjaHwyfHxzZXJ2ZXIlMjByb29tJTIwZGF0YSUyMGNlbnRlcnxlbnwxfDB8fHx8MTcxMDAwMDAwMHww&ixlib=rb-4.1.0&q=80&w=1200",
+      "alt": "Server room with rows of rack-mounted IT equipment and blue lighting",
+      "credit": "Unsplash"
+    },
+    "readingTime": 8,
+    "publishedAt": "2026-03-17T14:00:00.000Z",
+    "isDraft": false
+  },
+  {
     "slug": "navigating-distressed-private-equity-opportunities",
     "title": "Navigating Distressed Private Equity Opportunities",
     "description": "Explore distressed private equity opportunities with detailed market insights, actionable steps, and common pitfalls to avoid.",
