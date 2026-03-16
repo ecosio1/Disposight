@@ -1,5 +1,21 @@
 [
   {
+    "slug": "we-tracked-2736-corporate-distress-signals-heres-what-asset-buyers-need-to-know",
+    "title": "We Tracked 2,736 Corporate Distress Signals: Here's What Asset Buyers Need to Know",
+    "description": "Analysis of 2,736 distress signals across 48 states reveals where equipment, inventory, and real estate are about to hit the secondary market.",
+    "excerpt": "Since January, DispoSight has tracked 2,736 corporate distress signals across 48 states. Behind those signals: 738,518 workers affected, 1,275 companies monitored, and 91 detailed WARN/closure...",
+    "category": "industry-analysis",
+    "tags": ["distress data", "WARN Act", "liquidation", "industry analysis", "corporate distress signals", "asset disposition"],
+    "heroImage": {
+      "url": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=1200&q=80",
+      "alt": "Industrial factory with smokestacks at dusk",
+      "credit": "Unsplash"
+    },
+    "readingTime": 6,
+    "publishedAt": "2026-03-16T14:00:00.000Z",
+    "isDraft": false
+  },
+  {
     "slug": "it-asset-disposition-itad-complete-guide-for-corporate-liquidations",
     "title": "IT Asset Disposition (ITAD): A Complete Guide for Corporate Liquidations",
     "description": "Master IT asset disposition in corporate liquidations. Learn ITAD best practices, R2 certification, NIST 800-88 data destruction, and how to maximize recovery value.",
